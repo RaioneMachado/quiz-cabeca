@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analisando seu Perfil...</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #000;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        /* Header Perfil */
+        .profile-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 30px;
+        }
+
+        .profile-pic { width: 45px; height: 45px; border-radius: 50%; background: #eee; }
+        .profile-name { font-size: 13px; font-weight: 700; }
+        .profile-handle { font-size: 11px; color: #666; }
+
+        /* Barra de Carregamento */
+        .loading-section { margin: 40px 0; }
+        .loading-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: #444;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .progress-bg {
+            width: 100%;
+            height: 10px;
+            background: #f0f0f0;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #ffb347, #ffcc33);
+            border-radius: 20px;
+            transition: width 0.3s ease;
+        }
+
+        /* Texto de Status */
+        .status-msg {
+            font-size: 14px;
+            font-weight: 700;
+            color: #166534;
+            background: #dcfce7;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            min-height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Depoimentos Deslizantes */
+        .testimonial-slider {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            margin-top: 20px;
+        }
+
+        .testimonial-track {
+            display: flex;
+            gap: 20px;
+            animation: scroll 25s linear infinite;
+            width: max-content;
+        }
+
+        .card {
+            width: 260px;
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: left;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+        }
+
+        .stars { color: #ffb347; font-size: 12px; margin-bottom: 8px; }
+        .user-name { font-weight: 700; font-size: 13px; margin-bottom: 5px; }
+        .user-comment { font-size: 12px; color: #555; line-height: 1.5; }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="profile-header">
+            <img src="FOTO_RAFAEL" alt="" class="profile-pic">
+            <div class="profile-name">Rafael Bottrel | E-commerce <span style="color:#1d9bf0">✔</span></div>
+            <div class="profile-handle">@bottrel_</div>
+        </div>
+
+        <div class="loading-section">
+            <div class="loading-label">
+                <span>Analisando seu perfil com base em suas respostas...</span>
+                <span id="percent-text">0%</span>
+            </div>
+            <div class="progress-bg">
+                <div class="progress-fill" id="bar"></div>
+            </div>
+        </div>
+
+        <div class="status-msg" id="status">
+            Iniciando análise de viabilidade...
+        </div>
+
+        <div class="testimonial-slider">
+            <div class="testimonial-track">
+                <div class="card">
+                    <div class="stars">★★★★★</div>
+                    <div class="user-name">Diego Lins</div>
+                    <div class="user-comment">Não tinha tempo sobrando e nem sabia nada de dropshipping. Mas o método é tão direto que em 7 dias tive 938 reais de lucro limpo.</div>
+                </div>
+                <div class="card">
+                    <div class="stars">★★★★★</div>
+                    <div class="user-name">Gabriela Ramos</div>
+                    <div class="user-comment">Eu estava insegura, mas a loja veio pronta e eu só precisei seguir o passo a passo. Vendi meu primeiro produto em menos de 48h!</div>
+                </div>
+                <div class="card">
+                    <div class="stars">★★★★★</div>
+                    <div class="user-name">Mateus Souza</div>
+                    <div class="user-comment">Melhor investimento que já fiz. O suporte do Rafael é diferenciado e a estratégia sem anúncios funciona mesmo.</div>
+                </div>
+                <div class="card">
+                    <div class="stars">★★★★★</div>
+                    <div class="user-name">Diego Lins</div>
+                    <div class="user-comment">Não tinha tempo sobrando e nem sabia nada de dropshipping. Mas o método é tão direto que em 7 dias tive 938 reais de lucro limpo.</div>
+                </div>
+                <div class="card">
+                    <div class="stars">★★★★★</div>
+                    <div class="user-name">Gabriela Ramos</div>
+                    <div class="user-comment">Eu estava insegura, mas a loja veio pronta e eu só precisei seguir o passo a passo. Vendi meu primeiro produto em menos de 48h!</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const bar = document.getElementById('bar');
+        const percentText = document.getElementById('percent-text');
+        const statusMsg = document.getElementById('status');
+        
+        let progress = 0;
+        
+        const messages = [
+            { p: 10, m: "Analisando nichos compatíveis..." },
+            { p: 35, m: "Validando fornecedores nacionais..." },
+            { p: 60, m: "Calculando projeção de lucro para 7 dias..." },
+            { p: 85, m: "Estruturando seu plano personalizado..." },
+            { p: 100, m: "Perfil aprovado com sucesso!" }
+        ];
+
+        function updateProgress() {
+            // Lógica de velocidade variável
+            let increment = 0;
+            if (progress < 20) increment = Math.random() * 0.5; // Lento
+            else if (progress < 70) increment = Math.random() * 1.5; // Rápido
+            else increment = Math.random() * 0.3; // Lento no final
+
+            progress += increment;
+
+            if (progress > 100) progress = 100;
+
+            bar.style.width = progress + "%";
+            percentText.innerText = Math.floor(progress) + "%";
+
+            // Atualiza mensagens
+            const currentMsg = messages.find(msg => progress <= msg.p);
+            if (currentMsg) statusMsg.innerText = currentMsg.m;
+
+            if (progress < 100) {
+                setTimeout(updateProgress, 100);
+            } else {
+                setTimeout(() => {
+                    window.location.href = "index35.html";
+                }, 1000);
+            }
+        }
+
+        updateProgress();
+    </script>
+</body>
+</html>

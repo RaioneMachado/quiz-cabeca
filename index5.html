@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil - Quiz</title>
+    <style>
+        /* CSS Geral */
+        body {
+            background-color: #ffffff;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding-top: 20px;
+        }
+
+        /* Barra de Progresso */
+        .progress-container {
+            width: 100%;
+            max-width: 400px;
+            height: 6px;
+            background-color: #fcecd7;
+            border-radius: 10px;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .progress-bar {
+            width: 40%; /* Ajuste conforme a etapa do funil */
+            height: 100%;
+            background-color: #ff8c00;
+            border-radius: 10px;
+        }
+
+        /* Textos */
+        .meta-text {
+            font-size: 0.8rem;
+            color: #888;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 1.3rem;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            font-weight: 800;
+        }
+
+        /* Lista de Opções */
+        .options-container {
+            width: 90%;
+            max-width: 450px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .option-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: left;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .option-link:hover {
+            border-color: #ff8c00;
+            background-color: #fff9f2;
+        }
+
+        .option-text {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .radio-circle {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ccc;
+            border-radius: 50%;
+        }
+
+        /* Botão 3D (Design Premium) */
+        .pushable-link {
+            position: relative;
+            border: none;
+            background: transparent;
+            padding: 0;
+            cursor: pointer;
+            outline-offset: 4px;
+            width: 90%;
+            max-width: 450px;
+            margin-top: 10px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .shadow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            background: rgba(0, 0, 0, 0.15);
+            will-change: transform;
+            transform: translateY(2px);
+        }
+
+        .edge {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            background: linear-gradient(to left, #cc7000 0%, #ffb347 8%, #ffb347 92%, #cc7000 100%);
+        }
+
+        .front {
+            display: block;
+            position: relative;
+            padding: 15px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: bold;
+            color: white;
+            background: #ffb347;
+            will-change: transform;
+            transform: translateY(-4px);
+            transition: transform 600ms cubic-bezier(.3, .7, .4, 1);
+        }
+
+        .pushable-link:active .front {
+            transform: translateY(-2px);
+            transition: transform 34ms;
+        }
+
+        .pushable-link:active .shadow {
+            transform: translateY(1px);
+            transition: transform 34ms;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="progress-container">
+        <div class="progress-bar"></div>
+    </div>
+
+    <div class="meta-text">Meu perfil</div>
+    <h2>Qual seu regime de trabalho?</h2>
+
+    <div class="options-container">
+        <a href="index6.html" class="option-link">
+            <span class="option-text">Estou como CLT</span>
+            <div class="radio-circle"></div>
+        </a>
+
+        <a href="index6.html" class="option-link">
+            <span class="option-text">Sou Autônomo</span>
+            <div class="radio-circle"></div>
+        </a>
+
+        <a href="index6.html" class="option-link">
+            <span class="option-text">Sou Empreendedor</span>
+            <div class="radio-circle"></div>
+        </a>
+
+        <a href="index6.html" class="option-link">
+            <span class="option-text">Sou Estudante</span>
+            <div class="radio-circle"></div>
+        </a>
+
+        <a href="index6.html" class="option-link">
+            <span class="option-text">Não trabalho nem estudo no momento</span>
+            <div class="radio-circle"></div>
+        </a>
+    </div>
+
+    <a href="index6.html" class="pushable-link">
+        <span class="shadow"></span>
+        <span class="edge"></span>
+        <span class="front">Continuar</span>
+    </a>
+
+</body>
+</html>

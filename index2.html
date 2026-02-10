@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Perfil - Cabeça do Drop</title>
+    <style>
+        :root {
+            --primary-orange: #ff9900;
+            --bg-light: #ffffff;
+            --border-color: #e0e0e0;
+            --text-main: #1a1a1a;
+            --text-sub: #757575;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-light);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Barra de Progresso Superior */
+        .progress-container {
+            width: 100%;
+            height: 4px;
+            background-color: #f0f0f0;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+
+        .progress-bar {
+            width: 50%; /* Representando a segunda etapa */
+            height: 100%;
+            background-color: var(--primary-orange);
+            transition: width 0.3s ease;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 90%;
+            margin-top: 80px;
+            text-align: center;
+        }
+
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            text-decoration: none;
+            color: #000;
+            font-size: 20px;
+        }
+
+        .step-label {
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        h2 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+            color: var(--text-main);
+        }
+
+        /* Opções do Quiz */
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option-card {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            text-align: left;
+        }
+
+        .option-card:hover {
+            border-color: var(--primary-orange);
+            background-color: #fffaf5;
+        }
+
+        .icon-container {
+            width: 40px;
+            margin-right: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .content {
+            flex-grow: 1;
+        }
+
+        .content strong {
+            display: block;
+            font-size: 0.95rem;
+            color: var(--text-main);
+            margin-bottom: 4px;
+        }
+
+        .content span {
+            font-size: 0.8rem;
+            color: var(--text-sub);
+        }
+
+        /* Círculo de seleção à direita */
+        .radio-circle {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--border-color);
+            border-radius: 50%;
+            margin-left: 10px;
+        }
+
+        .option-card:hover .radio-circle {
+            border-color: var(--primary-orange);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="progress-container">
+        <div class="progress-bar"></div>
+    </div>
+
+    <a href="index.html" class="back-button">←</a>
+
+    <div class="container">
+        <span class="step-label">Meu perfil</span>
+        <h2>Qual é o seu principal objetivo?</h2>
+
+        <div class="options-list">
+            
+            <a href="index3.html" class="option-card">
+                <div class="icon-container">
+                    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                </div>
+                <div class="content">
+                    <strong>Ganhar uma Renda Extra</strong>
+                    <span>Começar a ter um dinheiro extra pra ficar mais tranquilo.</span>
+                </div>
+                <div class="radio-circle"></div>
+            </a>
+
+            <a href="index3.html" class="option-card">
+                <div class="icon-container">
+                    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><polyline points="17 11 19 13 23 9"></polyline></svg>
+                </div>
+                <div class="content">
+                    <strong>Sair do CLT, ter liberdade financeira e me dedicar 100% para isso</strong>
+                    <span>Construir uma carreira online flexível e lucrativa.</span>
+                </div>
+                <div class="radio-circle"></div>
+            </a>
+
+            <a href="index3.html" class="option-card">
+                <div class="icon-container">
+                    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                </div>
+                <div class="content">
+                    <strong>Ganhar mais dinheiro através da internet</strong>
+                    <span>Aumentar minhas fontes de renda através das vendas online.</span>
+                </div>
+                <div class="radio-circle"></div>
+            </a>
+
+        </div>
+    </div>
+
+    <script>
+        // Lógica simples para registrar cliques se necessário
+        document.querySelectorAll('.option-card').forEach(item => {
+            item.addEventListener('click', () => {
+                console.log("Objetivo selecionado. Redirecionando...");
+            });
+        });
+        
+    </script>
+    
+
+</body>
+</html>

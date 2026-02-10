@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plano Personalizado - Ecom Start</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --orange: #ffa500;
+            --green: #00a884;
+            --blue: #007bff;
+            --dark-gray: #333;
+            --light-gray: #f8f9fa;
+            --border-color: #e0e0e0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Helvetica Neue', Arial, sans-serif; }
+        body { background-color: #fff; color: var(--dark-gray); line-height: 1.6; display: flex; flex-direction: column; align-items: center; }
+        .container { max-width: 500px; width: 95%; padding: 20px 0; }
+        img { width: 100%; border-radius: 8px; display: block; margin: 15px 0; }
+
+        /* Header Perfil */
+        .profile-header { display: flex; flex-direction: column; align-items: center; margin-bottom: 20px; }
+        .avatar { width: 50px; height: 50px; border-radius: 50%; background: #eee; margin-bottom: 5px; }
+        .profile-name { font-weight: bold; font-size: 14px; display: flex; align-items: center; gap: 4px; }
+        .verified { color: #1d9bf0; font-size: 14px; }
+
+        /* Headlines */
+        .headline-box { text-align: center; margin-bottom: 30px; }
+        .headline-box h1 { font-size: 15px; font-weight: 800; }
+        .highlight-green { color: var(--green); text-decoration: underline; }
+        .sub-text { font-size: 11px; color: #666; margin-top: 10px; }
+
+        /* Gráficos Reativos */
+        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 30px; }
+        .stat-item { font-size: 11px; font-weight: bold; }
+        .progress-bg { width: 100%; height: 8px; background: #eee; border-radius: 10px; margin-top: 5px; overflow: hidden; }
+        .progress-fill { height: 100%; width: 0; transition: width 1.5s ease-in-out; }
+        .fill-orange { background: var(--orange); }
+        .fill-green { background: var(--green); }
+
+        /* Boxes de Conteúdo */
+        .info-card { border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; margin-bottom: 20px; text-align: center; }
+        .info-card h3 { font-size: 14px; margin-bottom: 10px; }
+        .info-card p { font-size: 12px; color: #555; }
+        .check-title { display: flex; align-items: center; justify-content: center; gap: 8px; color: #000; font-weight: 800; font-size: 14px; }
+
+        /* Seção Comparativa (99% vs 1%) */
+        .comparison-box { border-radius: 12px; padding: 15px; margin-bottom: 15px; font-size: 11px; text-align: left; }
+        .box-red { background-color: #ffebee; border: 1px solid #ffcdd2; color: #c62828; }
+        .box-green-light { background-color: #e8f5e9; border: 1px solid #c8e6c9; color: #2e7d32; }
+        .comparison-box ul { list-style: none; }
+        .comparison-box li { margin-bottom: 8px; display: flex; gap: 8px; }
+
+        /* Oferta e Preços */
+        .vagas-alert { background: #ffebee; color: #d32f2f; padding: 8px; border-radius: 5px; font-size: 11px; font-weight: bold; text-align: center; margin-bottom: 15px; }
+        .price-card { border: 4px solid var(--orange); border-radius: 12px; margin-bottom: 15px; position: relative; overflow: hidden; }
+        .price-header { background: var(--orange); color: white; font-size: 10px; font-weight: bold; padding: 4px; text-align: center; }
+        .price-content { padding: 15px; display: flex; justify-content: space-between; align-items: center; }
+        .price-info { text-align: left; }
+        .price-info b { font-size: 13px; display: block; }
+        .price-tag { text-align: right; font-size: 10px; }
+        .price-tag big { font-size: 18px; font-weight: 800; display: block; }
+
+        /* Botões 3D */
+        .btn-3d { display: block; width: 100%; padding: 16px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; color: white; transition: 0.1s; margin-bottom: 20px; }
+        .btn-green { background: #00a884; box-shadow: 0 5px 0 #007a60; }
+        .btn-blue { background: #007bff; box-shadow: 0 5px 0 #0056b3; }
+        .btn-3d:active { transform: translateY(3px); box-shadow: 0 2px 0 transparent; }
+
+        /* FAQ - MODIFICADO */
+        .faq-section { text-align: left; margin-top: 40px; }
+        .faq-item { border-bottom: 1px solid #eee; cursor: pointer; }
+        .faq-question { display: flex; justify-content: space-between; align-items: center; font-size: 12px; font-weight: bold; padding: 15px 0; }
+        .faq-answer { 
+            font-size: 11px; 
+            color: #555; 
+            padding: 0 0 15px 0;
+            display: none;
+            line-height: 1.5;
+        }
+        .faq-answer.active { display: block; }
+        .faq-icon { transition: transform 0.3s ease; }
+        .faq-item.active .faq-icon { transform: rotate(180deg); }
+        
+        footer { font-size: 9px; color: #999; text-align: center; margin-top: 40px; padding-bottom: 20px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="profile-header">
+        <div class="avatar"> <img src="image_20439a.jpg" style="border-radius: 50%; margin: 0;"> </div>
+        <div class="profile-name">Rafael Bottrel | E-commerce <i class="fas fa-check-circle verified"></i></div>
+        <div class="handle">@bottrel_</div>
+    </div>
+
+    <div class="headline-box">
+        <h1>Mensal, esse será o seu plano personalizado para começar no ECOM START e <span class="highlight-green">lucrar R$738 a R$1.138 nos próximos 7 dias!</span></h1>
+        <p class="sub-text">Você está a um passo de entrar no mercado que mais cresce no Brasil... eu vou te entregar uma loja online completa.</p>
+    </div>
+
+    <div class="stats-grid">
+        <div class="stat-item">Qualidade de vida (Baixa/Média) <div class="progress-bg"><div class="progress-fill fill-orange" data-width="25%"></div></div></div>
+        <div class="stat-item">Qualidade de vida (Alta) <div class="progress-bg"><div class="progress-fill fill-green" data-width="90%"></div></div></div>
+        <div class="stat-item">Tempo livre (Pouco) <div class="progress-bg"><div class="progress-fill fill-orange" data-width="9%"></div></div></div>
+        <div class="stat-item">Tempo livre (Alto) <div class="progress-bg"><div class="progress-fill fill-green" data-width="93%"></div></div></div>
+        <div class="stat-item">Salário (Baixo) <div class="progress-bg"><div class="progress-fill fill-orange" data-width="10%"></div></div></div>
+        <div class="stat-item">Salário (Ótimo) <div class="progress-bg"><div class="progress-fill fill-green" data-width="90%"></div></div></div>
+    </div>
+
+    <div class="info-card">
+        <h3>O plano é personalizado para mim?</h3>
+        <p>Sim! Ele é montado para atender você e suas necessidades!</p>
+    </div>
+
+    <h2 style="font-size: 14px; text-align: center; margin-bottom: 15px;">Confira tudo que você vai receber ao entrar hoje:</h2>
+
+    <div class="info-card">
+        <div class="check-title"> <i class="fas fa-check-square" style="color: var(--green);"></i> Loja Profissional Pronta para Vender</div>
+        <p>Uma loja completa, criada pelo meu time, com estrutura validada, design profissional e 20 produtos campeões já cadastrados.</p>
+        <img src="image_2b37e3.png" alt="Exemplo de Loja">
+        <p class="sub-text">Exemplo de Loja no nicho de Moda Masculina</p>
+    </div>
+
+    <div class="info-card">
+        <div class="check-title"> <i class="fas fa-graduation-cap"></i> Treinamento Ecom Start (Mais de 30 Aulas)</div>
+        <p>Treinamento Passo a Passo do Zero Até os R$10 Mil.</p>
+        <img src="image_2b381b.png" alt="Área de Membros">
+    </div>
+
+    <div class="info-card">
+        <div class="check-title"> <i class="fas fa-shield-alt"></i> Garantia Incondicional de 60 Dias + PIX de R$200</div>
+        <p style="text-align: left; font-size: 11px;">Se você não faturar pelo menos R$10.000 nos próximos 60 dias, eu devolvo 100% do seu dinheiro e ainda te faço um PIX extra de R$200.</p>
+    </div>
+
+    <div class="comparison-box box-red">
+        <b>Como 99% do mercado trabalha:</b>
+        <ul>
+            <li><i class="fas fa-times"></i> Criam lojas genéricas, sem credibilidade.</li>
+            <li><i class="fas fa-times"></i> Investem rios de dinheiro em tráfego pago.</li>
+        </ul>
+    </div>
+
+    <div class="comparison-box box-green-light">
+        <b>Como o "1%" que vai dominar o mercado trabalha:</b>
+        <ul>
+            <li><i class="fas fa-check"></i> Constroem lojas profissionais e nichadas.</li>
+            <li><i class="fas fa-check"></i> Vendem também de forma orgânica.</li>
+        </ul>
+    </div>
+
+    <div class="vagas-alert">Apenas 9 vagas disponíveis por apenas R$37</div>
+
+    <div class="price-card">
+        <div class="price-header">92% de Desconto no Cartão</div>
+        <div class="price-content">
+            <div class="price-info"><b>Plano Personalizado Ecom Start Mensal</b></div>
+            <div class="price-tag">De <strike>R$497,00</strike> por <big>R$ 37,00</big> no cartão</div>
+        </div>
+    </div>
+    <button class="btn-3d btn-green">Economize + R$10 no cartão</button>
+
+    <div class="price-card" style="border-color: var(--blue);">
+        <div class="price-header" style="background: var(--blue);">90% de Desconto no Pix</div>
+        <div class="price-content">
+            <div class="price-info"><b>Plano Personalizado Ecom Start Mensal</b></div>
+            <div class="price-tag">De <strike>R$497,00</strike> por <big>R$ 47,00</big> no pix</div>
+        </div>
+    </div>
+    <button class="btn-3d btn-blue">Garantir meu plano no pix</button>
+
+    <!-- FAQ MODIFICADO -->
+    <div class="faq-section">
+        <h3 style="text-align: center; margin-bottom: 20px;">Perguntas Frequentes</h3>
+        
+        <div class="faq-item">
+            <div class="faq-question">
+                Sou iniciante o treinamento é pra mim também?
+                <i class="fas fa-chevron-down faq-icon"></i>
+            </div>
+            <div class="faq-answer">
+                Sim! O treinamento foi desenvolvido para iniciantes. Começamos do zero absoluto, ensinando passo a passo cada etapa. Não é necessário ter conhecimento prévio em e-commerce ou tecnologia.
+            </div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">
+                Tenho pouco dinheiro para investir, serve pra mim?
+                <i class="fas fa-chevron-down faq-icon"></i>
+            </div>
+            <div class="faq-answer">
+                Sim! O plano foi criado para quem tem orçamento limitado. Com apenas R$37 mensais, você terá acesso a tudo que precisa para começar. Não é necessário investir em estoque ou tráfego pago inicialmente.
+            </div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">
+                Por quanto tempo vou ter acesso ao Ecom Start?
+                <i class="fas fa-chevron-down faq-icon"></i>
+            </div>
+            <div class="faq-answer">
+                Você terá acesso vitalício ao treinamento e atualizações. O plano mensal garante acesso contínuo enquanto a assinatura estiver ativa. Além disso, terá suporte do nosso time durante todo o processo.
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        Todos os direitos reservados.<br>
+        <b>ECOM CLUB LTDA - CNPJ: 53.728.836/0001-73</b>
+    </footer>
+</div>
+
+<script>
+    // Animação dos gráficos ao carregar
+    window.addEventListener('DOMContentLoaded', () => {
+        const fills = document.querySelectorAll('.progress-fill');
+        setTimeout(() => {
+            fills.forEach(fill => {
+                fill.style.width = fill.getAttribute('data-width');
+            });
+        }, 300);
+
+        // Inicialização do FAQ
+        initFAQ();
+    });
+
+    // Lógica do FAQ - Abrir/Fechar respostas
+    function initFAQ() {
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            const answer = item.querySelector('.faq-answer');
+            
+            question.addEventListener('click', () => {
+                // Fecha todas as outras respostas
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                        otherItem.querySelector('.faq-answer').classList.remove('active');
+                    }
+                });
+                
+                // Alterna (abre/fecha) a resposta atual
+                item.classList.toggle('active');
+                answer.classList.toggle('active');
+            });
+        });
+    }
+
+    // Redirecionamento (Simulando clique de checkout)
+    document.querySelectorAll('.btn-3d').forEach(btn => {
+        btn.addEventListener('click', () => {
+            window.location.href = 'index41.html';
+        });
+    });
+</script>
+
+</body>
+</html>

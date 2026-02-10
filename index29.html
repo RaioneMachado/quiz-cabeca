@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comparativo de Resultados</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #333;
+        }
+
+        /* Header Perfil */
+        .profile-header {
+            margin-top: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .profile-pic {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #eee;
+        }
+
+        .profile-name {
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        /* Container de Comparação */
+        .comparison-container {
+            display: flex;
+            gap: 15px;
+            width: 95%;
+            max-width: 600px;
+            margin-top: 20px;
+        }
+
+        .column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .image-card {
+            width: 100%;
+            border-radius: 15px;
+            overflow: hidden;
+            aspect-ratio: 9/16;
+            background-color: #f5f5f5;
+        }
+
+        .image-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .label-box {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 10px;
+            text-align: center;
+            font-size: 12px;
+            font-weight: 700;
+            min-height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #eee;
+        }
+
+        /* Estilização das Barras de Progresso */
+        .stat-group {
+            margin-bottom: 12px;
+        }
+
+        .stat-label {
+            font-size: 10px;
+            font-weight: 700;
+            margin-bottom: 5px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .bar-bg {
+            width: 100%;
+            height: 6px;
+            background: #f0f0f0;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bar-fill {
+            height: 100%;
+            border-radius: 10px;
+            width: 0% !important; /* Força começar em 0 */
+            transition: width 2s cubic-bezier(0.1, 0.5, 0.5, 1);
+        }
+
+        .red-fill { background-color: #ef4444; }
+        .green-fill { background-color: #22c55e; }
+
+        /* Círculos de Satisfação (SVG) */
+        .feedback-section {
+            margin-top: 40px;
+            text-align: center;
+            width: 90%;
+            max-width: 600px;
+        }
+
+        .feedback-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .circles-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            border: 1px solid #eee;
+            border-radius: 20px;
+            padding: 20px;
+        }
+
+        .circle-box {
+            flex: 1;
+            text-align: center;
+        }
+
+        .circle-svg {
+            width: 80px;
+            height: 80px;
+            transform: rotate(-90deg);
+        }
+
+        .circle-bg {
+            fill: none;
+            stroke: #f0f0f0;
+            stroke-width: 8;
+        }
+
+        .circle-progress {
+            fill: none;
+            stroke-width: 8;
+            stroke-linecap: round;
+            stroke-dasharray: 226; 
+            stroke-dashoffset: 226; /* Começa vazio */
+            transition: stroke-dashoffset 2s ease-in-out;
+        }
+
+        .circle-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .circle-wrapper { position: relative; display: inline-block; }
+
+        .circle-desc {
+            font-size: 10px;
+            color: #999;
+            margin-top: 10px;
+            line-height: 1.4;
+        }
+
+        /* Botão 3D */
+        .btn-continue {
+            width: 90%;
+            max-width: 500px;
+            background-color: #ffb347;
+            color: white;
+            border: none;
+            padding: 18px 0;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 12px;
+            cursor: pointer;
+            box-shadow: 0 5px 0 #e69a2e;
+            transition: all 0.1s;
+            margin: 40px 0;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+        .btn-continue:active {
+            box-shadow: 0 2px 0 #e69a2e;
+            transform: translateY(3px);
+        }
+
+        a { text-decoration: none; width: 100%; }
+
+        /* Loading optimization */
+        .image-card img {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .image-card img.loaded {
+            opacity: 1;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="profile-header">
+        <div class="profile-pic"></div>
+        <div class="profile-info">
+            <div class="profile-name">Rafael Bottrel | E-commerce <span style="color:#1d9bf0">✔</span></div>
+        </div>
+    </div>
+
+    <div class="comparison-container">
+        <div class="column">
+            <div class="image-card">
+                <img src="https://via.placeholder.com/200x350/f0f0f0/999?text=Carregando..." 
+                     data-src="https://via.placeholder.com/200x350" 
+                     alt="Sozinho" 
+                     class="lazy-img">
+            </div>
+            <div class="label-box">Começar sozinho sem estratégia</div>
+            
+            <div class="stat-group">
+                <div class="stat-label">Nível de Estresse <span>75%</span></div>
+                <div class="bar-bg"><div class="bar-fill red-fill" data-target="75%"></div></div>
+            </div>
+            <div class="stat-group">
+                <div class="stat-label">Chance de Desistência <span>88%</span></div>
+                <div class="bar-bg"><div class="bar-fill red-fill" data-target="88%"></div></div>
+            </div>
+            <div class="stat-group">
+                <div class="stat-label">Clareza (7 dias) <span>5%</span></div>
+                <div class="bar-bg"><div class="bar-fill red-fill" data-target="5%"></div></div>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="image-card">
+                <img src="https://via.placeholder.com/200x350/f0f0f0/999?text=Carregando..." 
+                     data-src="https://via.placeholder.com/200x350" 
+                     alt="Ecom Start" 
+                     class="lazy-img">
+            </div>
+            <div class="label-box">Começar com o Ecom Start</div>
+            
+            <div class="stat-group">
+                <div class="stat-label">Nível de Estresse <span>15%</span></div>
+                <div class="bar-bg"><div class="bar-fill green-fill" data-target="15%"></div></div>
+            </div>
+            <div class="stat-group">
+                <div class="stat-label">Chance de Desistência <span>8%</span></div>
+                <div class="bar-bg"><div class="bar-fill green-fill" data-target="8%"></div></div>
+            </div>
+            <div class="stat-group">
+                <div class="stat-label">Clareza (7 dias) <span>98%</span></div>
+                <div class="bar-bg"><div class="bar-fill green-fill" data-target="98%"></div></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="feedback-section">
+        <div class="feedback-title">🎯 Satisfação e Feedback de quem realizou</div>
+        <div class="circles-container">
+            <div class="circle-box">
+                <div class="circle-wrapper">
+                    <svg class="circle-svg">
+                        <circle class="circle-bg" cx="40" cy="40" r="36"></circle>
+                        <circle class="circle-progress" cx="40" cy="40" r="36" stroke="#ef4444" id="c1"></circle>
+                    </svg>
+                    <div class="circle-text">13%</div>
+                </div>
+                <div class="circle-desc"><b>Tentando sozinho(a):</b> Se sentem confusos e travados.</div>
+            </div>
+            <div class="circle-box">
+                <div class="circle-wrapper">
+                    <svg class="circle-svg">
+                        <circle class="circle-bg" cx="40" cy="40" r="36"></circle>
+                        <circle class="circle-progress" cx="40" cy="40" r="36" stroke="#22c55e" id="c2"></circle>
+                    </svg>
+                    <div class="circle-text">92%</div>
+                </div>
+                <div class="circle-desc"><b>Com o Ecom Start:</b> Se sentem confiantes e com resultados reais.</div>
+            </div>
+        </div>
+    </div>
+
+    <a href="index30.html">
+        <button class="btn-continue">Continuar</button>
+    </a>
+
+    <script>
+        // Otimização: Carregar a página primeiro, depois as animações
+        document.addEventListener('DOMContentLoaded', function() {
+            // Inicia animações imediatamente
+            animateBars();
+            animateCircles();
+            
+            // Carregamento lazy das imagens
+            loadImages();
+        });
+
+        function animateBars() {
+            const bars = document.querySelectorAll('.bar-fill');
+            bars.forEach(bar => {
+                const targetWidth = bar.getAttribute('data-target');
+                // Usa requestAnimationFrame para melhor performance
+                requestAnimationFrame(() => {
+                    bar.style.setProperty('width', targetWidth, 'important');
+                });
+            });
+        }
+
+        function animateCircles() {
+            // Anima os círculos
+            requestAnimationFrame(() => {
+                document.getElementById('c1').style.strokeDashoffset = 226 * (1 - 0.13);
+                document.getElementById('c2').style.strokeDashoffset = 226 * (1 - 0.92);
+            });
+        }
+
+        function loadImages() {
+            const lazyImages = document.querySelectorAll('.lazy-img');
+            
+            lazyImages.forEach(img => {
+                // Carrega imagens apenas quando estiverem visíveis ou após um pequeno delay
+                setTimeout(() => {
+                    const src = img.getAttribute('data-src');
+                    if (src) {
+                        const tempImg = new Image();
+                        tempImg.src = src;
+                        tempImg.onload = function() {
+                            img.src = src;
+                            img.classList.add('loaded');
+                        };
+                    }
+                }, 100); // Pequeno delay para priorizar o conteúdo principal
+            });
+        }
+    </script>
+
+</body>
+</html>

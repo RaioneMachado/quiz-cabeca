@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados Reais - Ecom Start</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        /* Header do Perfil */
+        .profile-header {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .profile-pic {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: #eee;
+            object-fit: cover;
+        }
+
+        .profile-name {
+            font-size: 13px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .profile-handle {
+            font-size: 11px;
+            color: #666;
+        }
+
+        h1 {
+            font-size: 16px;
+            font-weight: 700;
+            text-align: center;
+            margin: 30px 20px;
+            line-height: 1.4;
+        }
+
+        /* Container do Carrossel */
+        .carousel-wrapper {
+            width: 100%;
+            max-width: 400px;
+            position: relative;
+        }
+
+        .carousel-container {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none; /* Esconde scroll no Firefox */
+        }
+
+        .carousel-container::-webkit-scrollbar {
+            display: none; /* Esconde scroll no Chrome/Safari */
+        }
+
+        .carousel-item {
+            min-width: 100%;
+            scroll-snap-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .result-card {
+            width: 90%;
+            background: #f9f9f9;
+            border: 1px solid #eee;
+            border-radius: 20px;
+            padding: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .result-card img {
+            width: 100%;
+            border-radius: 15px;
+            display: block;
+        }
+
+        .result-desc {
+            padding: 15px 10px;
+            font-size: 12px;
+            color: #333;
+            line-height: 1.5;
+            text-align: left;
+        }
+
+        /* Indicadores (Pontinhos) */
+        .dots-container {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            background-color: #ddd;
+            border-radius: 50%;
+            transition: background-color 0.3s;
+        }
+
+        .dot.active {
+            background-color: #ffb347;
+            width: 20px;
+            border-radius: 10px;
+        }
+
+        /* Botão Final */
+        .btn-action {
+            width: 90%;
+            max-width: 500px;
+            background-color: #ffb347;
+            color: white;
+            border: none;
+            padding: 18px 0;
+            font-size: 15px;
+            font-weight: bold;
+            border-radius: 12px;
+            cursor: pointer;
+            box-shadow: 0 5px 0 #e69a2e;
+            text-align: center;
+            text-decoration: none;
+            margin: 40px 0;
+            display: block;
+        }
+
+        .btn-action:active {
+            box-shadow: 0 2px 0 #e69a2e;
+            transform: translateY(3px);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="profile-header">
+        <img src="https://via.placeholder.com/45" alt="Rafael" class="profile-pic">
+        <div class="profile-name">Rafael Bottrel | E-commerce <span style="color:#1d9bf0">✔</span></div>
+        <div class="profile-handle">@bottrel_</div>
+    </div>
+
+    <h1>Olha só os resultados reais dos meus alunos através do Ecom Start:</h1>
+
+    <div class="carousel-wrapper">
+        <div class="carousel-container" id="carousel">
+            <div class="carousel-item">
+                <div class="result-card">
+                    <img src="URL_IMAGEM_RESULTADO_1" alt="Resultado 1">
+                    <div class="result-desc">
+                        Com as estratégias do Ecom Start, o Victor está vendendo mais de R$3 mil por dia.
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="result-card">
+                    <img src="URL_IMAGEM_RESULTADO_2" alt="Resultado 2">
+                    <div class="result-desc">
+                        A Ana começou do zero absoluto e em apenas 15 dias já bateu sua meta de faturamento mensal.
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="result-card">
+                    <img src="URL_IMAGEM_RESULTADO_3" alt="Resultado 3">
+                    <div class="result-desc">
+                        O Pedro aplicou o método de mineração e encontrou seu primeiro produto vencedor em 48 horas.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="dots-container">
+            <div class="dot active"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+    </div>
+
+    <a href="index32.html" class="btn-action">
+        Quero ter esse resultado
+    </a>
+
+    <script>
+        const carousel = document.getElementById('carousel');
+        const dots = document.querySelectorAll('.dot');
+
+        carousel.addEventListener('scroll', () => {
+            const scrollLeft = carousel.scrollLeft;
+            const itemWidth = carousel.offsetWidth;
+            const activeIndex = Math.round(scrollLeft / itemWidth);
+
+            dots.forEach((dot, index) => {
+                if (index === activeIndex) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

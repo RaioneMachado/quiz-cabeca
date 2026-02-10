@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dúvidas? Veja os comprovantes - Ecom Start</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            color: #000;
+        }
+
+        /* Barra de Progresso Superior (Totalmente preenchida) */
+        .progress-container {
+            width: 100%;
+            height: 6px;
+            background-color: #fcebd5;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 100%;
+            background-color: #ffb347;
+        }
+
+        .content {
+            width: 90%;
+            max-width: 450px;
+            text-align: center;
+            margin-top: 60px;
+            padding-bottom: 40px;
+        }
+
+        /* Header Mentor */
+        .profile-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-pic {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 8px;
+        }
+
+        .profile-name {
+            font-size: 13px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .profile-handle {
+            font-size: 11px;
+            color: #666;
+        }
+
+        /* Chamada para o vídeo */
+        .video-headline {
+            font-size: 14px;
+            font-weight: 700;
+            margin: 20px 0;
+            line-height: 1.4;
+        }
+
+        .link-green {
+            color: #10b981;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        /* Container do Vídeo */
+        .video-container {
+            width: 100%;
+            max-width: 320px;
+            aspect-ratio: 9/16;
+            background-color: #000;
+            border-radius: 15px;
+            margin: 0 auto 30px auto;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        /* Overlay de Áudio (Conforme imagem) */
+        .audio-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 179, 71, 0.9);
+            padding: 15px 25px;
+            border-radius: 10px;
+            color: white;
+            font-size: 11px;
+            font-weight: 700;
+            text-align: center;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        /* Botão Final */
+        .btn-continue {
+            width: 100%;
+            background-color: #ffb347;
+            color: white;
+            border: none;
+            padding: 16px 0;
+            font-size: 15px;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #e69a2e;
+            transition: all 0.1s;
+        }
+
+        .btn-continue:active {
+            box-shadow: 0 1px 0 #e69a2e;
+            transform: translateY(3px);
+        }
+
+        a { text-decoration: none; width: 100%; }
+
+    </style>
+</head>
+<body>
+
+    <div class="progress-container">
+        <div class="progress-bar"></div>
+    </div>
+
+    <div class="content">
+        <div class="profile-section">
+            <img src="https://github.com/identidade-visual.png" alt="Rafael Bottrel" class="profile-pic">
+            <div class="profile-name">Rafael Bottrel | E-commerce <span style="color:#1d9bf0">✔</span></div>
+            <div class="profile-handle">@bottrel_</div>
+        </div>
+
+        <div class="video-headline">
+            Ainda tem dúvidas? <span class="link-green">Veja os comprovantes</span> na minha conta.
+        </div>
+
+        <div class="video-container">
+            <div class="audio-overlay">
+                Clique aqui<br>
+                <img src="https://cdn-icons-png.flaticon.com/512/3106/3106061.png" width="30" style="filter: invert(1); margin: 8px 0;"><br>
+                para ativar o som
+            </div>
+            <img src="https://via.placeholder.com/320x568/222/fff?text=Video+de+Comprovantes" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+
+        <a href="index39.html">
+            <button class="btn-continue">Continuar</button>
+        </a>
+    </div>
+
+</body>
+</html>

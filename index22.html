@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interesses Pessoais</title>
+    <style>
+        /* Importando uma fonte similar à da imagem */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Barra de Progresso no Topo */
+        .progress-container {
+            width: 100%;
+            height: 6px;
+            background-color: #f5f5f5;
+            position: fixed;
+            top: 0;
+        }
+
+        .progress-bar {
+            width: 50%; /* Ajuste conforme a etapa do seu fluxo */
+            height: 100%;
+            background-color: #ffb347;
+        }
+
+        /* Seta de Voltar */
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            cursor: pointer;
+            text-decoration: none;
+            color: #000;
+            font-size: 20px;
+        }
+
+        /* Container Principal */
+        .main-content {
+            margin-top: 150px;
+            text-align: center;
+            max-width: 600px;
+            padding: 0 20px;
+        }
+
+        .category-label {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        p {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        /* Input Estilizado */
+        .input-field {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            outline: none;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+
+        .input-field:focus {
+            border-color: #ffb347;
+        }
+
+        /* Botão com Efeito 3D */
+        .btn-container {
+            margin-top: 25px;
+        }
+
+        .btn-continue {
+            width: 100%;
+            background-color: #ffb347;
+            color: white;
+            border: none;
+            padding: 15px 0;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.2s;
+            
+            /* Efeito 3D (Sombra que simula profundidade) */
+            box-shadow: 0 5px 0 #e69a2e;
+            position: relative;
+        }
+
+        .btn-continue:hover {
+            background-color: #ffbc5d;
+        }
+
+        .btn-continue:active {
+            /* Simula o botão sendo "apertado" */
+            box-shadow: 0 2px 0 #e69a2e;
+            transform: translateY(3px);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="progress-container">
+        <div class="progress-bar"></div>
+    </div>
+
+    <a href="#" class="back-button">←</a>
+
+    <div class="main-content">
+        <div class="category-label">Interesses Pessoais</div>
+        
+        <h1>Quais assuntos você mais gosta de consumir nas redes sociais hoje em dia?</h1>
+        
+        <p>Pode ser sobre tecnologia, games, carros, casa, moda, viagens, culinária... Pra gerar seu plano, preciso te conhecer melhor!</p>
+
+        <form action="index23.html">
+            <input type="text" class="input-field" placeholder="Digite aqui..." required>
+            
+            <div class="btn-container">
+                <button type="submit" class="btn-continue">Continuar</button>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>

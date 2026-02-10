@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rotina Desejada</title>
+    <style>
+        body {
+            background-color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding-top: 20px;
+        }
+
+        /* Barra de Progresso */
+        .progress-container {
+            width: 100%;
+            max-width: 400px;
+            height: 6px;
+            background-color: #fcecd7;
+            border-radius: 10px;
+            margin-bottom: 60px;
+        }
+
+        .progress-bar {
+            width: 80%; /* Progresso avançado */
+            height: 100%;
+            background-color: #ff8c00;
+            border-radius: 10px;
+        }
+
+        .meta-text {
+            font-size: 0.8rem;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        h2 {
+            font-size: 1.3rem;
+            color: #000;
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+
+        .sub-text {
+            font-size: 0.85rem;
+            color: #999;
+            margin-bottom: 30px;
+        }
+
+        /* Container de Múltipla Escolha */
+        .options-container {
+            width: 90%;
+            max-width: 500px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        /* Estilo da Opção */
+        .option-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 20px;
+            border: 1px solid #e5e5e5;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            user-select: none;
+        }
+
+        .option-text {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .checkbox-box {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+
+        /* --- Estado Selecionado (Amarelo) --- */
+        .option-card.selected {
+            border-color: #ff8c00;
+            background-color: #fff9f2;
+        }
+
+        .option-card.selected .checkbox-box {
+            background-color: #ff8c00;
+            border-color: #ff8c00;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E");
+            background-size: contain;
+        }
+
+        /* BOTÃO 3D VIA HTML (Link Direto) */
+        .btn-link {
+            text-decoration: none;
+            width: 90%;
+            max-width: 500px;
+            display: block;
+        }
+
+        .pushable {
+            position: relative;
+            border: none;
+            background: transparent;
+            padding: 0;
+            cursor: pointer;
+            width: 100%;
+            display: block;
+        }
+
+        .shadow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            background: rgba(0, 0, 0, 0.1);
+            transform: translateY(2px);
+        }
+
+        .edge {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            background: linear-gradient(to left, #cc7000 0%, #ffb347 8%, #ffb347 92%, #cc7000 100%);
+        }
+
+        .front {
+            display: block;
+            position: relative;
+            padding: 16px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: bold;
+            color: white;
+            background: #ffb347;
+            text-align: center;
+            transform: translateY(-4px);
+            transition: transform 100ms;
+        }
+
+        .pushable:active .front {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="progress-container">
+        <div class="progress-bar"></div>
+    </div>
+
+    <div class="meta-text">Estilo de vida e hábitos</div>
+    <h2>Como gostaria que fosse sua rotina?</h2>
+    <div class="sub-text">Escolha todas as opções que você mais se identifica:</div>
+
+    <div class="options-container">
+        <div class="option-card" onclick="toggleOption(this)">
+            <span class="option-text">Acordar sem despertador e trabalhar no meu próprio horário</span>
+            <div class="checkbox-box"></div>
+        </div>
+
+        <div class="option-card" onclick="toggleOption(this)">
+            <span class="option-text">Ter liberdade de tempo pra poder viajar mais</span>
+            <div class="checkbox-box"></div>
+        </div>
+
+        <div class="option-card" onclick="toggleOption(this)">
+            <span class="option-text">Trabalhar de onde eu quiser fazendo algo que me motiva</span>
+            <div class="checkbox-box"></div>
+        </div>
+
+        <div class="option-card" onclick="toggleOption(this)">
+            <span class="option-text">Ter mais tempo para família e lazer com os amigos</span>
+            <div class="checkbox-box"></div>
+        </div>
+    </div>
+
+    <a href="index8.html" class="btn-link">
+        <div class="pushable">
+            <span class="shadow"></span>
+            <span class="edge"></span>
+            <span class="front">Continuar</span>
+        </div>
+    </a>
+
+    <script>
+        // Função apenas para o efeito visual de seleção amarela
+        function toggleOption(element) {
+            element.classList.toggle('selected');
+        }
+    </script>
+
+</body>
+</html>

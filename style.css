@@ -1,0 +1,122 @@
+:root {
+    --primary-orange: #ff9900;
+    --dark-bg: #ffffff;
+    --text-color: #333;
+    --success-green: #24a148;
+}
+
+body {
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--dark-bg);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    max-width: 550px;
+    width: 90%;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    font-weight: 900;
+    margin-bottom: 25px;
+    line-height: 1.3;
+}
+
+.highlight-green {
+    background-color: var(--success-green);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.image-container {
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+.main-img {
+    width: 100%;
+    display: block;
+}
+
+.benefits-list {
+    list-style: none;
+    padding: 0;
+    margin: 15px 0;
+    text-align: left;
+    display: inline-block;
+}
+
+.benefits-list li {
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+}
+
+.benefits-list li::before {
+    content: '✅';
+    margin-right: 8px;
+    font-size: 0.9rem;
+}
+
+.quiz-instruction {
+    font-size: 0.85rem;
+    color: #555;
+    margin-top: 25px;
+}
+
+.quiz-title {
+    font-weight: 700;
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+.quiz-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.quiz-button {
+    background-color: var(--primary-orange);
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: filter 0.2s;
+}
+
+.quiz-button:hover {
+    filter: brightness(0.9);
+}
+
+.quiz-button span {
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 480px) {
+    .quiz-grid {
+        grid-template-columns: 1fr;
+    }
+}

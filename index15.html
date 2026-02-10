@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plano Personalizado</title>
+    <style>
+        body {
+            background-color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px 15px;
+            color: #333;
+        }
+
+        /* Perfil Superior */
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .profile-pic {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .profile-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .profile-name {
+            font-weight: bold;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .verified-badge {
+            color: #1d9bf0;
+            font-size: 0.8rem;
+        }
+
+        .profile-handle {
+            font-size: 0.75rem;
+            color: #777;
+        }
+
+        /* Container da Imagem Principal */
+        .main-image-container {
+            width: 100%;
+            max-width: 450px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 25px;
+        }
+
+        .main-image {
+            width: 100%;
+            display: block;
+        }
+
+        /* Texto de Promessa */
+        .promise-text {
+            text-align: center;
+            font-size: 1rem;
+            font-weight: 700;
+            line-height: 1.4;
+            max-width: 400px;
+            margin-bottom: 30px;
+            color: #1a1a1a;
+        }
+
+        /* BOTÃO 3D (Redirecionamento HTML) */
+        .btn-link {
+            text-decoration: none;
+            width: 100%;
+            max-width: 450px;
+            display: block;
+        }
+
+        .pushable {
+            position: relative;
+            border: none;
+            background: transparent;
+            padding: 0;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .shadow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            background: rgba(0, 0, 0, 0.1);
+            transform: translateY(2px);
+        }
+
+        .edge {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            background: linear-gradient(to left, #cc7000 0%, #ff8c00 8%, #ff8c00 92%, #cc7000 100%);
+        }
+
+        .front {
+            display: block;
+            position: relative;
+            padding: 16px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: bold;
+            color: white;
+            background: #ff8c00;
+            text-align: center;
+            transform: translateY(-4px);
+            transition: transform 100ms;
+        }
+
+        .pushable:active .front {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="profile-header">
+        <img src="https://via.placeholder.com/45" alt="Rafael" class="profile-pic">
+        <div class="profile-info">
+            <div class="profile-name">Rafael Bottrel | E-commerce <span class="verified-badge">✔</span></div>
+            <div class="profile-handle">@bottrel_</div>
+        </div>
+    </div>
+
+    <div class="main-image-container">
+        <img src="https://via.placeholder.com/600x600" alt="Rafael Bottrel no estúdio" class="main-image">
+    </div>
+
+    <div class="promise-text">
+        Você vai ter um plano para começar no ecommerce sem estoque, 100% ajustado à sua rotina e aos seus horários.
+    </div>
+
+    <a href="index16.html" class="btn-link">
+        <div class="pushable">
+            <span class="shadow"></span>
+            <span class="edge"></span>
+            <span class="front">Continuar</span>
+        </div>
+    </a>
+
+</body>
+</html>

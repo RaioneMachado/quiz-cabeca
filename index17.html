@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Verdade sobre o Digital</title>
+    <style>
+        body {
+            background-color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 15px;
+            color: #1a1a1a;
+            line-height: 1.5;
+        }
+
+        /* Perfil Superior */
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .profile-pic {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .profile-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .profile-name {
+            font-weight: bold;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .verified-badge {
+            color: #1d9bf0;
+            font-size: 0.85rem;
+        }
+
+        .profile-handle {
+            font-size: 0.75rem;
+            color: #777;
+        }
+
+        /* Conteúdo de Texto */
+        .content-wrapper {
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 1.1rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        p {
+            font-size: 0.85rem;
+            color: #444;
+            margin-bottom: 15px;
+        }
+
+        .highlight-bold {
+            font-weight: 700;
+            color: #000;
+        }
+
+        /* Imagem de Prova Social */
+        .promo-banner {
+            width: 100%;
+            border-radius: 15px;
+            margin: 20px 0;
+            display: block;
+        }
+
+        /* Seção de Tópicos */
+        .bullets-section {
+            text-align: left;
+            margin-bottom: 30px;
+        }
+
+        .bullet-item {
+            display: flex;
+            gap: 10px;
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        /* Botão 3D */
+        .btn-link {
+            text-decoration: none;
+            width: 100%;
+            max-width: 500px;
+            display: block;
+            margin-top: 10px;
+        }
+
+        .pushable {
+            position: relative;
+            border: none;
+            background: transparent;
+            padding: 0;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .shadow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            background: rgba(0, 0, 0, 0.1);
+            transform: translateY(2px);
+        }
+
+        .edge {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            background: linear-gradient(to left, #cc7000 0%, #ffb347 8%, #ffb347 92%, #cc7000 100%);
+        }
+
+        .front {
+            display: block;
+            position: relative;
+            padding: 16px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: bold;
+            color: white;
+            background: #ffb347;
+            text-align: center;
+            transform: translateY(-4px);
+            transition: transform 100ms;
+        }
+
+        .pushable:active .front {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="profile-header">
+        <img src="https://via.placeholder.com/45" alt="Rafael" class="profile-pic">
+        <div class="profile-info">
+            <div class="profile-name">Rafael Bottrel | E-commerce <span class="verified-badge">✔</span></div>
+            <div class="profile-handle">@bottrel_</div>
+        </div>
+    </div>
+
+    <div class="content-wrapper">
+        <h2>🚨 O que ninguém te conta sobre ganhar dinheiro na internet:</h2>
+        
+        <p>Você já deve ter visto muita gente tentando entrar no mercado digital por conta das grandes promessas de ficar rico de forma rápida e fácil.</p>
+        
+        <p class="highlight-bold">Parecia ótimo: apertar alguns botões e ganhar muito dinheiro.</p>
+
+        <img src="https://via.placeholder.com/500x350" alt="E-commerce Prova Social" class="promo-banner">
+
+        <p class="highlight-bold">Mas na verdade, só existe uma forma real de começar no digital:</p>
+
+        <div class="bullets-section">
+            <div class="bullet-item">
+                <span>📋</span>
+                <div>Ter um método que realmente funciona e que você pode aplicar mesmo trabalhando ou estudando. Não é sobre ficar rico da noite pro dia, é sobre ter resultados reais trabalhando inicialmente apenas 2 horas por dia.</div>
+            </div>
+            <div class="bullet-item">
+                <span>💡</span>
+                <div>E mais: você precisa de algo que não dependa de você aparecer, não precise de investimento em estoque e que as pessoas já estejam acostumadas a comprar todos os dias.</div>
+            </div>
+        </div>
+
+        <p><strong>É exatamente isso que o E-COMMERCE oferece:</strong> O jeito mais seguro de sair do CLT e ter sua independência financeira.</p>
+    </div>
+
+    <a href="index18.html" class="btn-link">
+        <div class="pushable">
+            <span class="shadow"></span>
+            <span class="edge"></span>
+            <span class="front">Continuar</span>
+        </div>
+    </a>
+
+</body>
+</html>

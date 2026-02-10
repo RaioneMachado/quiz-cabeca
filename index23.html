@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seleção de Nichos</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Barra de Progresso */
+        .progress-container {
+            width: 100%;
+            height: 6px;
+            background-color: #f5f5f5;
+            position: fixed;
+            top: 0;
+            z-index: 10;
+        }
+
+        .progress-bar {
+            width: 75%; /* Progresso avançado */
+            height: 100%;
+            background-color: #ffb347;
+        }
+
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            cursor: pointer;
+            text-decoration: none;
+            color: #000;
+            font-size: 20px;
+        }
+
+        /* Conteúdo Principal */
+        .main-content {
+            margin-top: 80px;
+            text-align: center;
+            max-width: 850px;
+            padding: 20px;
+            width: 100%;
+        }
+
+        .category-label {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .warning-text {
+            font-size: 13px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        /* Grid de Opções */
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        /* Estilo do Card de Opção */
+        .option-card {
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            user-select: none;
+            background-color: #fff;
+            position: relative;
+        }
+
+        /* Checkbox customizado */
+        .checkbox-custom {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            transition: all 0.2s;
+        }
+
+        .option-text {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        /* Estado Selecionado */
+        .option-card.selected {
+            background-color: #fff4e5; /* Amarelo clarinho de fundo */
+            border-color: #ffb347;
+        }
+
+        .option-card.selected .checkbox-custom {
+            background-color: #ffb347;
+            border-color: #ffb347;
+        }
+
+        .option-card.selected .checkbox-custom::after {
+            content: '✓';
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        /* Botão 3D */
+        .btn-continue {
+            width: 100%;
+            max-width: 400px;
+            background-color: #ffb347;
+            color: white;
+            border: none;
+            padding: 16px 0;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 12px;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+            margin: 0 auto 50px auto;
+            box-shadow: 0 5px 0 #e69a2e;
+            transition: all 0.1s;
+            text-align: center;
+        }
+
+        .btn-continue:hover {
+            background-color: #ffbc5d;
+        }
+
+        .btn-continue:active {
+            box-shadow: 0 2px 0 #e69a2e;
+            transform: translateY(3px);
+        }
+
+        /* Link para redirecionamento */
+        .continue-link {
+            width: 100%;
+            max-width: 400px;
+            background-color: #ffb347;
+            color: white;
+            border: none;
+            padding: 16px 0;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 12px;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+            margin: 0 auto 50px auto;
+            box-shadow: 0 5px 0 #e69a2e;
+            transition: all 0.1s;
+            text-align: center;
+        }
+
+        .continue-link:hover {
+            background-color: #ffbc5d;
+        }
+
+        .continue-link:active {
+            box-shadow: 0 2px 0 #e69a2e;
+            transform: translateY(3px);
+        }
+
+        /* Responsividade para celular */
+        @media (max-width: 600px) {
+            .options-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="progress-container">
+        <div class="progress-bar"></div>
+    </div>
+
+    <a href="#" class="back-button">←</a>
+
+    <div class="main-content">
+        <div class="category-label">Descobrindo seus nichos ideais</div>
+        <h1>Dentre os nichos abaixo, quais você mais se identifica?</h1>
+        <div class="warning-text">⚠️ Escolha até 4 opções:</div>
+
+        <div class="options-grid">
+            <div class="option-card" onclick="toggleOption(this)">
+                <div class="checkbox-custom"></div>
+                <span class="option-text">Casa e Decoração 🏠</span>
+            </div>
+            <div class="option-card" onclick="toggleOption(this)">
+                <div class="checkbox-custom"></div>
+                <span class="option-text">Eletrônicos 📱</span>
+            </div>
+            <div class="option-card" onclick="toggleOption(this)">
+                <div class="checkbox-custom"></div>
+                <span class="option-text">Moda Masculina 👔</span>
+            </div>
+            <div class="option-card" onclick="toggleOption(this)">
+                <div class="checkbox-custom"></div>
+                <span class="option-text">Moda Feminina 👗</span>
+            </div>
+            <div class="option-card" onclick="toggleOption(this)">
+                <div class="checkbox-custom"></div>
+                <span class="option-text">Fitness 💪</span>
+            </div>
+            <div class="option-card" onclick="toggleOption(this)">
+                <div class="checkbox-custom"></div>
+                <span class="option-text">Automotivo 🚗</span>
+            </div>
+            <div class="option-card" onclick="toggleOption(this)">
+                <div class="checkbox-custom"></div>
+                <span class="option-text">Pet 🐾</span>
+            </div>
+            <div class="option-card" onclick="toggleOption(this)">
+                <div class="checkbox-custom"></div>
+                <span class="option-text">Beleza e Cuidados ✨</span>
+            </div>
+            <div class="option-card" onclick="toggleOption(this)">
+                <div class="checkbox-custom"></div>
+                <span class="option-text">Cozinha e Utensílios 🍳</span>
+            </div>
+            <div class="option-card" onclick="toggleOption(this)">
+                <div class="checkbox-custom"></div>
+                <span class="option-text">Games e Acessórios 🎮</span>
+            </div>
+        </div>
+
+        <!-- Botão modificado para ser um link -->
+        <a href="index24.html" class="continue-link">Continuar</a>
+    </div>
+
+    <script>
+        // Função para marcar/desmarcar
+        function toggleOption(element) {
+            // Verifica quantas já estão selecionadas
+            const selectedCount = document.querySelectorAll('.option-card.selected').length;
+            
+            // Se já tiver 4 e o usuário tentar marcar outra, não deixa
+            if (!element.classList.contains('selected') && selectedCount >= 4) {
+                alert("Você pode escolher no máximo 4 opções.");
+                return;
+            }
+
+            element.classList.toggle('selected');
+        }
+    </script>
+
+</body>
+</html>

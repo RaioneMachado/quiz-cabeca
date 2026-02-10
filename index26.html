@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faixa Salarial</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Barra de Progresso Superior */
+        .progress-container {
+            width: 100%;
+            height: 6px;
+            background-color: #f5f5f5;
+            position: fixed;
+            top: 0;
+            z-index: 10;
+        }
+
+        .progress-bar {
+            width: 98%; /* Quase no fim do questionário */
+            height: 100%;
+            background-color: #ffb347;
+        }
+
+        /* Seta de Voltar */
+        .back-button {
+            position: absolute;
+            top: 25px;
+            left: 20px;
+            cursor: pointer;
+            text-decoration: none;
+            color: #000;
+            font-size: 20px;
+        }
+
+        /* Conteúdo Principal */
+        .main-content {
+            margin-top: 130px;
+            text-align: center;
+            max-width: 550px;
+            width: 90%;
+        }
+
+        .category-label {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: #000;
+        }
+
+        /* Lista de Opções */
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .option-item {
+            position: relative;
+            width: 100%;
+        }
+
+        /* Oculta o rádio real */
+        .option-item input {
+            position: absolute;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        /* Card da Opção */
+        .option-card {
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 18px 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #fff;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .option-text {
+            font-size: 15px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        /* Círculo do Radio Customizado */
+        .radio-circle {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ddd;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        /* Estilo Selecionado */
+        .option-item input:checked + .option-card {
+            background-color: #fff4e5;
+            border-color: #ffb347;
+        }
+
+        .option-item input:checked + .option-card .radio-circle {
+            border-color: #ffb347;
+            background-color: #ffb347;
+        }
+
+        .option-item input:checked + .option-card .radio-circle::after {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="progress-container">
+        <div class="progress-bar"></div>
+    </div>
+
+    <a href="#" class="back-button">←</a>
+
+    <div class="main-content">
+        <div class="category-label">Quase lá</div>
+        <h1>Qual sua faixa salarial hoje?</h1>
+
+        <form action="index27.html" method="GET">
+            <div class="options-list">
+                
+                <label class="option-item">
+                    <input type="radio" name="faixa_salarial" value="menos_1000" onchange="this.form.submit()">
+                    <div class="option-card">
+                        <span class="option-text">Menos de R$ 1.000,00</span>
+                        <div class="radio-circle"></div>
+                    </div>
+                </label>
+
+                <label class="option-item">
+                    <input type="radio" name="faixa_salarial" value="1000_2000" onchange="this.form.submit()">
+                    <div class="option-card">
+                        <span class="option-text">Entre R$ 1.000,00 e R$ 2.000,00</span>
+                        <div class="radio-circle"></div>
+                    </div>
+                </label>
+
+                <label class="option-item">
+                    <input type="radio" name="faixa_salarial" value="2000_3000" onchange="this.form.submit()">
+                    <div class="option-card">
+                        <span class="option-text">Entre R$ 2.000,00 e R$ 3.000,00</span>
+                        <div class="radio-circle"></div>
+                    </div>
+                </label>
+
+                <label class="option-item">
+                    <input type="radio" name="faixa_salarial" value="3000_5000" onchange="this.form.submit()">
+                    <div class="option-card">
+                        <span class="option-text">Entre R$ 3.000,00 e R$ 5.000,00</span>
+                        <div class="radio-circle"></div>
+                    </div>
+                </label>
+
+                <label class="option-item">
+                    <input type="radio" name="faixa_salarial" value="5000_10000" onchange="this.form.submit()">
+                    <div class="option-card">
+                        <span class="option-text">Entre R$ 5.000,00 e R$ 10.000,00</span>
+                        <div class="radio-circle"></div>
+                    </div>
+                </label>
+
+                <label class="option-item">
+                    <input type="radio" name="faixa_salarial" value="acima_10000" onchange="this.form.submit()">
+                    <div class="option-card">
+                        <span class="option-text">Acima de R$ 10.000,00</span>
+                        <div class="radio-circle"></div>
+                    </div>
+                </label>
+
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>

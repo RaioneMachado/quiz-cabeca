@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecom Start</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-bottom: 40px;
+        }
+
+        /* Barra de progresso no topo */
+        .header-bar {
+            width: 100%;
+            height: 4px;
+            background-color: #f1f1f1;
+            position: relative;
+            margin-bottom: 25px;
+        }
+        .header-bar::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 4px;
+            background-color: #FFA500;
+        }
+
+        .container {
+            max-width: 450px;
+            width: 92%;
+            text-align: center;
+        }
+
+        /* Perfil Rafael Bottrel */
+        .profile-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-image: url('image_20439a.jpg'); /* Usando a foto da imagem */
+            background-size: cover;
+            background-position: center;
+            margin-bottom: 8px;
+        }
+
+        .profile-name {
+            font-size: 14px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .verified {
+            color: #1d9bf0;
+            font-size: 13px;
+        }
+
+        .username {
+            color: #666;
+            font-size: 12px;
+            margin-top: 2px;
+        }
+
+        /* Textos e Imagens */
+        .text-bold-main {
+            font-size: 14px;
+            font-weight: 800;
+            margin: 15px 0;
+        }
+
+        .main-img {
+            width: 100%;
+            border-radius: 12px;
+            margin-bottom: 12px;
+        }
+
+        .text-description {
+            font-size: 12.5px;
+            font-weight: 700;
+            line-height: 1.4;
+            margin-bottom: 15px;
+            padding: 0 5px;
+        }
+
+        .whatsapp-capture {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .caption-box {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 10px;
+            font-size: 11px;
+            color: #444;
+            text-align: left;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+        }
+
+        /* Bloco de Texto Final */
+        .final-copy {
+            font-size: 13.5px;
+            line-height: 1.5;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .final-copy p {
+            margin-bottom: 15px;
+        }
+
+        /* Botão 3D Laranja */
+        .btn-3d {
+            display: block;
+            width: 100%;
+            background: #FF9800;
+            color: #fff;
+            padding: 16px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+            box-shadow: 0 5px 0 #cc7a00; /* Efeito 3D */
+            transition: all 0.1s ease;
+            margin-top: 10px;
+        }
+
+        .btn-3d:active {
+            box-shadow: 0 2px 0 #cc7a00;
+            transform: translateY(3px);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="header-bar"></div>
+
+    <div class="container">
+        <div class="profile-section">
+            <div class="avatar"></div>
+            <div class="profile-name">
+                Rafael Bottrel | E-commerce <i class="fas fa-check-circle verified"></i>
+            </div>
+            <div class="username">@bottrel_</div>
+        </div>
+
+        <p class="text-bold-main">Não é sorte, é método.</p>
+
+        <img src="image_20439a.jpg" class="main-img" alt="Rafael Bottrel">
+
+        <p class="text-description">
+            Por conta dos resultados das minhas lojas, eu criei um passo a passo que qualquer pessoa pode replicar: o Ecom Start.
+        </p>
+
+        <img src="image_2b24fb.png" class="whatsapp-capture" alt="Resultado Financeiro">
+
+        <div class="caption-box">
+            Em apenas 1 dia: Lucro líquido de R$1.056,52 e R$4.498,10 de receita, apenas aplicando um criativo ensinado dentro do Ecom Start.
+        </div>
+
+        <div class="final-copy">
+            <p><strong>Eu criei tudo em um método replicável,</strong> o Ecom Start.</p>
+            
+            <p>Assim como o Leonardo, que <strong>lucrou R$1.056,52 em um único dia,</strong> aplicando o que ensino dentro do plano.</p>
+            
+            <p>Você não precisa ter ideias mirabolantes ou experiência prévia, <strong>basta seguir o passo a passo</strong> já validado em lojas reais e lucrativas.</p>
+            
+            <p><strong>Você está pronto (a)</strong> para ser o próximo a aplicar e ter esse tipo de resultado?</p>
+        </div>
+
+        <button class="btn-3d" id="btnContinuar">
+            Continuar
+        </button>
+    </div>
+
+    <script>
+        document.getElementById('btnContinuar').addEventListener('click', function() {
+            window.location.href = 'index40.html';
+        });
+    </script>
+
+</body>
+</html>

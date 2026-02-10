@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecom Start - Depoimentos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-bottom: 40px;
+        }
+
+        .container {
+            max-width: 450px;
+            width: 92%;
+            text-align: center;
+            padding-top: 20px;
+        }
+
+        /* Perfil Rafael Bottrel */
+        .profile-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .avatar {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background-image: url('perfil.jpg'); /* Substitua pela sua foto de perfil */
+            background-size: cover;
+            background-position: center;
+            margin-bottom: 8px;
+        }
+
+        .profile-name {
+            font-size: 14px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .verified {
+            color: #1d9bf0;
+            font-size: 13px;
+        }
+
+        .username {
+            color: #666;
+            font-size: 12px;
+            margin-top: 2px;
+        }
+
+        /* Headlines */
+        .headline {
+            font-size: 16px;
+            font-weight: 800;
+            line-height: 1.3;
+            margin-bottom: 20px;
+            padding: 0 10px;
+        }
+
+        .subheadline {
+            font-size: 11px;
+            color: #444;
+            margin-bottom: 25px;
+            padding: 0 20px;
+            line-height: 1.5;
+        }
+
+        /* Carrossel */
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            border-radius: 15px;
+            margin-bottom: 15px;
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.4s ease-in-out;
+            width: 300%; /* 3 imagens = 300% */
+        }
+
+        .carousel-item {
+            width: 100%;
+            flex-shrink: 0;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            display: block;
+            border-radius: 15px;
+        }
+
+        /* Indicadores (Pontinhos) */
+        .dots-container {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 30px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            background-color: #e0e0e0;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .dot.active {
+            background-color: #FF9800;
+        }
+
+        /* Botão 3D Laranja */
+        .btn-3d {
+            display: block;
+            width: 100%;
+            background: #FF9800;
+            color: #fff;
+            padding: 16px;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+            box-shadow: 0 5px 0 #cc7a00;
+            transition: all 0.1s ease;
+            text-transform: none;
+        }
+
+        .btn-3d:active {
+            box-shadow: 0 2px 0 #cc7a00;
+            transform: translateY(3px);
+        }
+
+        /* Botões de navegação lateral (opcional para facilitar no desktop) */
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.2);
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+        }
+        .prev { left: 10px; }
+        .next { right: 10px; }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="profile-section">
+            <div class="avatar"></div>
+            <div class="profile-name">
+                Rafael Bottrel | E-commerce <i class="fas fa-check-circle verified"></i>
+            </div>
+            <div class="username">@bottrel_</div>
+        </div>
+
+        <h2 class="headline">Você está prestes a entrar no mercado que mais cresce no Brasil: o de lojas online.</h2>
+        
+        <p class="subheadline">
+            Se prepara, porque sua realidade financeira pode mudar nos próximos dias. Assim como aconteceu com esse pessoal aqui 👇🏻
+        </p>
+
+        <div class="carousel-container">
+            <div class="carousel-track" id="track">
+                <div class="carousel-item">
+                    <img src="image_2b3004.png" alt="Depoimento 1">
+                </div>
+                <div class="carousel-item">
+                    <img src="depoimento2.jpg" alt="Depoimento 2">
+                </div>
+                <div class="carousel-item">
+                    <img src="depoimento3.jpg" alt="Depoimento 3">
+                </div>
+            </div>
+        </div>
+
+        <div class="dots-container">
+            <div class="dot active" onclick="moveToSlide(0)"></div>
+            <div class="dot" onclick="moveToSlide(1)"></div>
+            <div class="dot" onclick="moveToSlide(2)"></div>
+        </div>
+
+        <button class="btn-3d" id="btnPlan">
+            Ver meu plano
+        </button>
+    </div>
+
+    <script>
+        const track = document.getElementById('track');
+        const dots = document.querySelectorAll('.dot');
+        let currentIndex = 0;
+
+        function updateDots() {
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentIndex);
+            });
+        }
+
+        function moveToSlide(index) {
+            currentIndex = index;
+            const amountToMove = -index * 100;
+            track.style.transform = `translateX(${amountToMove}%)`;
+            updateDots();
+        }
+
+        // Touch events para passar pro lado no celular
+        let startX = 0;
+        track.addEventListener('touchstart', e => startX = e.touches[0].clientX);
+        track.addEventListener('touchend', e => {
+            let endX = e.changedTouches[0].clientX;
+            if (startX - endX > 50 && currentIndex < 2) moveToSlide(currentIndex + 1);
+            if (startX - endX < -50 && currentIndex > 0) moveToSlide(currentIndex - 1);
+        });
+
+        // Redirecionamento do botão
+        document.getElementById('btnPlan').addEventListener('click', function() {
+            window.location.href = 'index41.html';
+        });
+    </script>
+
+</body>
+</html>

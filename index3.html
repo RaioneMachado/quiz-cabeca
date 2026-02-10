@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prova Social - Cabeça do Drop</title>
+    <style>
+        :root {
+            --primary-orange: #ff9900;
+            --bg-white: #ffffff;
+            --text-black: #000000;
+            --text-gray: #4a4a4a;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-white);
+            color: var(--text-black);
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 90%;
+            padding: 40px 10px;
+            text-align: center;
+        }
+
+        /* Botão Voltar */
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 24px;
+            text-decoration: none;
+            color: var(--text-black);
+        }
+
+        /* Headline com destaque */
+        .headline {
+            font-size: 1.25rem;
+            font-weight: 800;
+            line-height: 1.3;
+            margin-bottom: 20px;
+        }
+
+        .highlight {
+            background-color: var(--primary-orange);
+            color: white;
+            padding: 2px 5px;
+            border-radius: 4px;
+        }
+
+        /* Subtexto descritivo */
+        .description {
+            font-size: 0.9rem;
+            color: var(--text-black);
+            line-height: 1.5;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .description b {
+            font-weight: 800;
+        }
+
+        /* Imagem de Prova Social */
+        .image-wrapper {
+            width: 100%;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .image-wrapper img {
+            width: 100%;
+            display: block;
+        }
+
+        /* Texto de incentivo */
+        .continue-text {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+        }
+
+        /* Botão Avançar */
+        .cta-button {
+            display: block;
+            width: 100%;
+            background-color: var(--primary-orange);
+            color: white;
+            text-decoration: none;
+            padding: 18px 0;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            transition: transform 0.2s;
+            box-shadow: 0 4px 15px rgba(255, 153, 0, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: scale(1.02);
+            filter: brightness(1.1);
+        }
+
+        @media (max-width: 480px) {
+            .headline { font-size: 1.1rem; }
+            .description { font-size: 0.85rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <a href="index2.html" class="back-btn">←</a>
+
+    <div class="container">
+        <h1 class="headline">
+            <span class="highlight">1.346 pessoas</span> já estão lucrando com lojas online sem estoque, usando meu Plano.
+        </h1>
+
+        <p class="description">
+            <b>9 em cada 10</b> alunos com idade entre <b>18 - 29 anos</b> começaram do zero, <b>largaram a CLT</b> e se tornaram <b>donos de lojas online de sucesso</b> na internet.
+        </p>
+
+        <p class="description">
+            Com o plano personalizado e a loja pronta ideal para você, você vai ser o próximo a ter uma profissão altamente lucrativa e que te permite viver com liberdade.
+        </p>
+
+        <div class="image-wrapper">
+            <img src="https://via.placeholder.com/600x450/000000/FFFFFF?text=Imagem+Autoridade+Cabeça+do+Drop" alt="Cabeça do Drop Depoimento">
+        </div>
+
+        <p class="continue-text">Continue respondendo pra receber tudo personalizado pra você 👇</p>
+
+        <a href="index4.html" class="cta-button">Avançar</a>
+    </div>
+
+    <script>
+        // Log para rastreamento de clique no funil
+        document.querySelector('.cta-button').addEventListener('click', function() {
+            console.log("Usuário avançou para index4.html");
+        });
+        
+    </script>
+</body>
+</html>

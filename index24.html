@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experiência Técnica</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Barra de Progresso Superior */
+        .progress-container {
+            width: 100%;
+            height: 6px;
+            background-color: #f5f5f5;
+            position: fixed;
+            top: 0;
+        }
+
+        .progress-bar {
+            width: 85%; /* Barra mais avançada */
+            height: 100%;
+            background-color: #ffb347;
+        }
+
+        /* Conteúdo */
+        .main-content {
+            margin-top: 100px;
+            text-align: center;
+            max-width: 550px;
+            width: 90%;
+        }
+
+        .category-label {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+
+        /* Opções de Escolha Única */
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .option-item {
+            position: relative;
+            width: 100%;
+        }
+
+        /* Esconde o rádio original */
+        .option-item input {
+            position: absolute;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        .option-card {
+            border: 1px solid #e0e0e0;
+            border-radius: 15px;
+            padding: 18px 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #fff;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .option-text {
+            font-size: 15px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        /* Círculo do Radio */
+        .radio-custom {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ddd;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Estilo Selecionado */
+        .option-item input:checked + .option-card {
+            background-color: #fff4e5;
+            border-color: #ffb347;
+        }
+
+        .option-item input:checked + .option-card .radio-custom {
+            border-color: #ffb347;
+            background-color: #ffb347;
+        }
+
+        .option-item input:checked + .option-card .radio-custom::after {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="progress-container">
+        <div class="progress-bar"></div>
+    </div>
+
+    <div class="main-content">
+        <div class="category-label">Experiência Técnica</div>
+        <h1>Qual seu nível de experiência com internet?</h1>
+
+        <form action="index25.html" id="techForm" method="get">
+            <div class="options-list">
+                
+                <label class="option-item">
+                    <input type="radio" name="experiencia" value="iniciante" onchange="this.form.submit()">
+                    <div class="option-card">
+                        <span class="option-text">Iniciante</span>
+                        <div class="radio-custom"></div>
+                    </div>
+                </label>
+
+                <label class="option-item">
+                    <input type="radio" name="experiencia" value="basico" onchange="this.form.submit()">
+                    <div class="option-card">
+                        <span class="option-text">Uso básico de celular e redes sociais</span>
+                        <div class="radio-custom"></div>
+                    </div>
+                </label>
+
+                <label class="option-item">
+                    <input type="radio" name="experiencia" value="intermediario" onchange="this.form.submit()">
+                    <div class="option-card">
+                        <span class="option-text">Intermediário</span>
+                        <div class="radio-custom"></div>
+                    </div>
+                </label>
+
+                <label class="option-item">
+                    <input type="radio" name="experiencia" value="navego_bem" onchange="this.form.submit()">
+                    <div class="option-card">
+                        <span class="option-text">Navego bem na internet, uso apps diversos</span>
+                        <div class="radio-custom"></div>
+                    </div>
+                </label>
+
+                <label class="option-item">
+                    <input type="radio" name="experiencia" value="facilidade" onchange="this.form.submit()">
+                    <div class="option-card">
+                        <span class="option-text">Tenho facilidade com tecnologia e sistemas</span>
+                        <div class="radio-custom"></div>
+                    </div>
+                </label>
+
+                <label class="option-item">
+                    <input type="radio" name="experiencia" value="avancado" onchange="this.form.submit()">
+                    <div class="option-card">
+                        <span class="option-text">Avançado</span>
+                        <div class="radio-custom"></div>
+                    </div>
+                </label>
+
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>

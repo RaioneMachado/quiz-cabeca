@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interesses - Loja Online</title>
+    <style>
+        body {
+            background-color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding-top: 20px;
+        }
+
+        /* Barra de Progresso */
+        .progress-container {
+            width: 100%;
+            max-width: 400px;
+            height: 6px;
+            background-color: #fcecd7;
+            border-radius: 10px;
+            margin-bottom: 60px;
+        }
+
+        .progress-bar {
+            width: 95%; /* Quase no final */
+            height: 100%;
+            background-color: #ff8c00;
+            border-radius: 10px;
+        }
+
+        .meta-text {
+            font-size: 0.8rem;
+            color: #666;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        h2 {
+            font-size: 1.3rem;
+            color: #000;
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+
+        .sub-text {
+            font-size: 0.85rem;
+            color: #999;
+            margin-bottom: 30px;
+        }
+
+        /* Container de Múltipla Escolha */
+        .options-container {
+            width: 90%;
+            max-width: 500px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        /* Estilo da Opção */
+        .option-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 20px;
+            border: 1px solid #e5e5e5;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            user-select: none;
+        }
+
+        .option-content {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .check-icon-left {
+            color: #4caf50; /* Verde do check da imagem */
+            font-weight: bold;
+            display: none; /* Só aparece quando selecionado se desejar, ou fixo como na imagem */
+        }
+
+        /* Na imagem os checks verdes já aparecem à esquerda por padrão */
+        .visible-check {
+            color: #4caf50;
+            font-size: 1.1rem;
+        }
+
+        .option-text {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .checkbox-box {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+
+        /* --- Estado Selecionado (Amarelo) --- */
+        .option-card.selected {
+            border-color: #ff8c00;
+            background-color: #fff9f2;
+        }
+
+        .option-card.selected .checkbox-box {
+            background-color: #ff8c00;
+            border-color: #ff8c00;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E");
+            background-size: contain;
+        }
+
+        /* BOTÃO 3D VIA HTML */
+        .btn-link {
+            text-decoration: none;
+            width: 90%;
+            max-width: 500px;
+            display: block;
+        }
+
+        .pushable {
+            position: relative;
+            border: none;
+            background: transparent;
+            padding: 0;
+            cursor: pointer;
+            width: 100%;
+            display: block;
+        }
+
+        .shadow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            background: rgba(0, 0, 0, 0.1);
+            transform: translateY(2px);
+        }
+
+        .edge {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            background: linear-gradient(to left, #cc7000 0%, #ff8c00 8%, #ff8c00 92%, #cc7000 100%);
+        }
+
+        .front {
+            display: block;
+            position: relative;
+            padding: 16px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: bold;
+            color: white;
+            background: #ff8c00;
+            text-align: center;
+            transform: translateY(-4px);
+            transition: transform 100ms;
+        }
+
+        .pushable:active .front {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="progress-container">
+        <div class="progress-bar"></div>
+    </div>
+
+    <div class="meta-text">Quase lá</div>
+    <h2>O que mais te interessa a trabalhar com Loja Online?</h2>
+    <div class="sub-text">Escolha todas as opções que você mais se identifica:</div>
+
+    <div class="options-container">
+        <div class="option-card" onclick="toggleOption(this)">
+            <div class="option-content">
+                <span class="visible-check">✓</span>
+                <span class="option-text">Viajar quando quiser</span>
+            </div>
+            <div class="checkbox-box"></div>
+        </div>
+
+        <div class="option-card" onclick="toggleOption(this)">
+            <div class="option-content">
+                <span class="visible-check">✓</span>
+                <span class="option-text">Conquistar meu carro próprio e casa</span>
+            </div>
+            <div class="checkbox-box"></div>
+        </div>
+
+        <div class="option-card" onclick="toggleOption(this)">
+            <div class="option-content">
+                <span class="visible-check">✓</span>
+                <span class="option-text">Ter mais tempo para curtir com os amigos e família</span>
+            </div>
+            <div class="checkbox-box"></div>
+        </div>
+
+        <div class="option-card" onclick="toggleOption(this)">
+            <div class="option-content">
+                <span class="visible-check">✓</span>
+                <span class="option-text">Conseguir minha independência financeira</span>
+            </div>
+            <div class="checkbox-box"></div>
+        </div>
+
+        <div class="option-card" onclick="toggleOption(this)">
+            <div class="option-content">
+                <span class="visible-check">✓</span>
+                <span class="option-text">Trabalhar de casa</span>
+            </div>
+            <div class="checkbox-box"></div>
+        </div>
+
+        <div class="option-card" onclick="toggleOption(this)">
+            <div class="option-content">
+                <span class="visible-check">✓</span>
+                <span class="option-text">Ganhar mais dinheiro</span>
+            </div>
+            <div class="checkbox-box"></div>
+        </div>
+    </div>
+
+    <a href="index9.html" class="btn-link">
+        <div class="pushable">
+            <span class="shadow"></span>
+            <span class="edge"></span>
+            <span class="front">Continuar</span>
+        </div>
+    </a>
+
+    <script>
+        function toggleOption(element) {
+            element.classList.toggle('selected');
+        }
+    </script>
+
+</body>
+</html>

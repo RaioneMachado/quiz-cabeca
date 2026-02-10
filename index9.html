@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sua Loja Profissional</title>
+    <style>
+        body {
+            background-color: #ffffff;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 10px;
+            color: #333;
+        }
+
+        /* Cabeçalho Perfil */
+        .profile-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .profile-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: #ddd; /* Substituir pela imagem do Rafael */
+            margin-bottom: 10px;
+            object-fit: cover;
+        }
+
+        .profile-name {
+            font-weight: bold;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .verified-icon {
+            color: #1d9bf0;
+            font-size: 0.9rem;
+        }
+
+        .handle {
+            color: #666;
+            font-size: 0.85rem;
+        }
+
+        /* Headline Principal */
+        .headline {
+            text-align: center;
+            font-size: 1.4rem;
+            font-weight: 800;
+            max-width: 600px;
+            line-height: 1.3;
+            margin: 20px 0;
+        }
+
+        .headline span {
+            color: #2ecc71; /* Verde destaque */
+        }
+
+        /* Lista de Benefícios */
+        .benefit-list {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 40px;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .check-green {
+            color: #2ecc71;
+            font-weight: bold;
+        }
+
+        /* Seção de Passos e Prints */
+        .step-container {
+            width: 100%;
+            max-width: 500px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .step-title {
+            font-weight: 800;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+
+        .screenshot-box {
+            background-color: #f5f5f5;
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .screenshot-box img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        /* Mini tags informativas */
+        .info-tag {
+            border: 1px solid #e0e0e0;
+            padding: 8px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        /* BOTÃO 3D */
+        .btn-link {
+            text-decoration: none;
+            width: 100%;
+            max-width: 450px;
+            display: block;
+            margin-top: 20px;
+        }
+
+        .pushable {
+            position: relative;
+            border: none;
+            background: transparent;
+            padding: 0;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .shadow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            background: rgba(0, 0, 0, 0.1);
+            transform: translateY(2px);
+        }
+
+        .edge {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            background: linear-gradient(to left, #cc7000 0%, #ff8c00 8%, #ff8c00 92%, #cc7000 100%);
+        }
+
+        .front {
+            display: block;
+            position: relative;
+            padding: 16px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: white;
+            background: #ff8c00;
+            text-align: center;
+            transform: translateY(-4px);
+            transition: transform 100ms;
+        }
+
+        .pushable:active .front {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="profile-section">
+        <img src="https://via.placeholder.com/80" alt="Rafael Bottrel" class="profile-img">
+        <div class="profile-name">Rafael Bottrel | E-commerce <span class="verified-icon">✔</span></div>
+        <div class="handle">@bottrel_</div>
+    </div>
+
+    <div class="headline">
+        Vou te ajudar a largar o CLT e trabalhar no seu <span>próprio ritmo, de onde quiser!</span>
+    </div>
+
+    <ul class="benefit-list">
+        <li class="benefit-item"><span class="check-green">✔</span> Ganhar dinheiro com lojas online</li>
+        <li class="benefit-item"><span class="check-green">✔</span> Vender sem aparecer</li>
+        <li class="benefit-item"><span class="check-green">✔</span> Ter sua independência financeira</li>
+        <li class="benefit-item" style="margin-left: 20px;"><span class="check-green">✔</span> Viajar pelo mundo</li>
+        <li class="benefit-item" style="margin-left: 20px;"><span class="check-green">✔</span> Curtir sua família</li>
+    </ul>
+
+    <h3>Veja como vai ser o seu trajeto:</h3>
+
+    <div class="step-container">
+        <div class="step-title">1 - O primeiro passo é receber sua loja profissional pronta:</div>
+        <div class="screenshot-box">
+            <p style="font-size: 0.8rem; color: #999;">[Print da Conversa - Feedback Loja]</p>
+        </div>
+    </div>
+
+    <div class="step-container">
+        <div class="step-title">2 - O segundo passo é colocar a loja no ar e começar a divulgação:</div>
+        <div class="screenshot-box">
+             <p style="font-size: 0.8rem; color: #999;">[Print Primeiras Vendas]</p>
+        </div>
+    </div>
+
+    <div class="step-container">
+        <div class="step-title">3 - No final dos 7 dias, você já estará fazendo mais de 10 vendas por dia.</div>
+        <div class="screenshot-box">
+             <p style="font-size: 0.8rem; color: #999;">[Print Resultados Faturamento]</p>
+        </div>
+    </div>
+
+    <div class="info-tag">...sem precisar de ter estoque</div>
+    <div class="info-tag">...sem precisar sair de casa</div>
+    <div class="info-tag">...sem precisar de muito tempo livre</div>
+
+    <a href="index10.html" class="btn-link">
+        <div class="pushable">
+            <span class="shadow"></span>
+            <span class="edge"></span>
+            <span class="front">Continuar</span>
+        </div>
+    </a>
+
+</body>
+</html>

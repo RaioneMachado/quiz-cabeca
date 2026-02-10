@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equipamentos</title>
+    <style>
+        body {
+            background-color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding-top: 20px;
+        }
+
+        /* Barra de Progresso Final */
+        .progress-container {
+            width: 100%;
+            max-width: 400px;
+            height: 6px;
+            background-color: #fcecd7;
+            border-radius: 10px;
+            margin-bottom: 60px;
+        }
+
+        .progress-bar {
+            width: 100%; /* Barra completa */
+            height: 100%;
+            background-color: #ff8c00;
+            border-radius: 10px;
+        }
+
+        .meta-text {
+            font-size: 0.85rem;
+            color: #777;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 1.35rem;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            font-weight: 800;
+            text-align: center;
+        }
+
+        /* Opções Clicáveis */
+        .options-container {
+            width: 90%;
+            max-width: 500px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .option-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .option-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 20px;
+            border: 1px solid #e5e5e5;
+            border-radius: 12px;
+            transition: all 0.2s ease;
+        }
+
+        .option-card:hover {
+            border-color: #ff8c00;
+            background-color: #fffaf5;
+        }
+
+        .option-text {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .radio-circle {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ddd;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        /* Botão 3D Redirecionando via HTML */
+        .btn-link {
+            text-decoration: none;
+            width: 90%;
+            max-width: 500px;
+            display: block;
+        }
+
+        .pushable {
+            position: relative;
+            border: none;
+            background: transparent;
+            padding: 0;
+            cursor: pointer;
+            width: 100%;
+            display: block;
+        }
+
+        .shadow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            background: rgba(0, 0, 0, 0.1);
+            transform: translateY(2px);
+        }
+
+        .edge {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            background: linear-gradient(to left, #cc7000 0%, #ffb347 8%, #ffb347 92%, #cc7000 100%);
+        }
+
+        .front {
+            display: block;
+            position: relative;
+            padding: 16px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: bold;
+            color: white;
+            background: #ffb347;
+            text-align: center;
+            transform: translateY(-4px);
+            transition: transform 100ms;
+        }
+
+        .pushable:active .front {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="progress-container">
+        <div class="progress-bar"></div>
+    </div>
+
+    <div class="meta-text">Estilo de vida e hábitos</div>
+    <h2>Você tem computador?</h2>
+
+    <div class="options-container">
+        <a href="index14.html" class="option-link">
+            <div class="option-card">
+                <span class="option-text">Sim</span>
+                <div class="radio-circle"></div>
+            </div>
+        </a>
+
+        <a href="index14.html" class="option-link">
+            <div class="option-card">
+                <span class="option-text">Não</span>
+                <div class="radio-circle"></div>
+            </div>
+        </a>
+    </div>
+
+    <a href="index14.html" class="btn-link">
+        <div class="pushable">
+            <span class="shadow"></span>
+            <span class="edge"></span>
+            <span class="front">Continuar</span>
+        </div>
+    </a>
+
+</body>
+</html>

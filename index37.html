@@ -185,7 +185,7 @@
             <span>✉️ Ex: seuemail@exemplo.com</span>
         </div>
 
-        <form id="emailForm" action="index38.html">
+        <form id="emailForm">
             <div class="input-group">
                 <input type="email" 
                        id="email"
@@ -196,7 +196,7 @@
                        required>
             </div>
 
-            <button type="submit" class="btn-submit disabled" id="submitBtn">
+            <button type="submit" class="btn-submit disabled" id="submitBtn" disabled>
                 Continuar
             </button>
         </form>
@@ -255,20 +255,19 @@ document.addEventListener('DOMContentLoaded', function() {
         const emailNormalizado = normalizeEmail(email);
         localStorage.setItem("email", emailNormalizado);
 
-        // 🔥 Pega todas as respostas salvas
-const dados = {
-  nome: localStorage.getItem("nome") || "",
-  email: emailNormalizado,
-  telefone: localStorage.getItem("telefone") || "",
-  pergunta1: localStorage.getItem("pergunta1") || "",
-  pergunta2: localStorage.getItem("pergunta2") || "",
-  pergunta3: localStorage.getItem("pergunta3") || "",
-  pergunta4: localStorage.getItem("pergunta4") || "",
-  pergunta5: localStorage.getItem("pergunta5") || ""
-};
+        const dados = {
+          nome: localStorage.getItem("nome") || "",
+          email: emailNormalizado,
+          telefone: localStorage.getItem("telefone") || "",
+          pergunta1: localStorage.getItem("pergunta1") || "",
+          pergunta2: localStorage.getItem("pergunta2") || "",
+          pergunta3: localStorage.getItem("pergunta3") || "",
+          pergunta4: localStorage.getItem("pergunta4") || "",
+          pergunta5: localStorage.getItem("pergunta5") || ""
+        };
 
         try {
-            const response = await fetch('http://localhost:3000/enviar', {
+            const response = await fetch('https://quiz-cabeca.onrender.com/enviar', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -300,11 +299,8 @@ const dados = {
 
     });
 
-    submitBtn.disabled = true;
-
 });
 </script>
-
 
 </body>
 </html>

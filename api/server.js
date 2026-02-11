@@ -5,12 +5,14 @@ const { Resend } = require('resend');
 
 const app = express();
 
+// Middlewares
 app.use(cors());
 app.use(express.json());
 
+// Resend
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-// Rota teste
+// Rota de teste
 app.get('/', (req, res) => {
   res.send('Servidor rodando 🚀');
 });
@@ -29,7 +31,12 @@ app.post('/enviar', async (req, res) => {
       pergunta5
     } = req.body;
 
-    console.log('Dados recebidos:', req.body);
+    console.log('📩 Dados recebidos:', req.body);
+
+    // Validação mínima
+    if (!email) {
+      return res.status(400).json({ success: false, error: 'Email é obrigatório' });
+    }
 
     await resend.emails.send({
       from: 'Funil <onboarding@resend.dev>',
@@ -49,16 +56,19 @@ app.post('/enviar', async (req, res) => {
       `
     });
 
-    res.json({ success: true });
+    console.log('✅ Email enviado com sucesso');
+
+    return res.json({ success: true });
 
   } catch (error) {
-    console.error('Erro ao enviar email:', error);
-    res.status(500).json({ success: false, error: 'Erro ao enviar email' });
+    console.error('❌ Erro ao enviar email:', error);
+    return res.status(500).json({ success: false, error: 'Erro ao enviar email' });
   }
 });
 
+// Porta (Render usa process.env.PORT)
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
-  console.log(`Servidor rodando na porta ${PORT}`);
+  console.log(`🚀 Servidor rodando na porta ${PORT}`);
 });

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plano Personalizado - Ecom Start</title>
+    <title>Plano Personalizado - Método Europa</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
@@ -13,6 +13,8 @@
             --dark-gray: #333;
             --light-gray: #f8f9fa;
             --border-color: #e0e0e0;
+            --euro-green: #228B22;
+            --euro-blue: #003399;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Helvetica Neue', Arial, sans-serif; }
@@ -29,7 +31,7 @@
         /* Headlines */
         .headline-box { text-align: center; margin-bottom: 30px; }
         .headline-box h1 { font-size: 15px; font-weight: 800; }
-        .highlight-green { color: var(--green); text-decoration: underline; }
+        .highlight-green { color: var(--euro-green); text-decoration: underline; }
         .sub-text { font-size: 11px; color: #666; margin-top: 10px; }
 
         /* Gráficos Reativos */
@@ -38,7 +40,7 @@
         .progress-bg { width: 100%; height: 8px; background: #eee; border-radius: 10px; margin-top: 5px; overflow: hidden; }
         .progress-fill { height: 100%; width: 0; transition: width 1.5s ease-in-out; }
         .fill-orange { background: var(--orange); }
-        .fill-green { background: var(--green); }
+        .fill-green { background: var(--euro-green); }
 
         /* Boxes de Conteúdo */
         .info-card { border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; margin-bottom: 20px; text-align: center; }
@@ -55,8 +57,8 @@
 
         /* Oferta e Preços */
         .vagas-alert { background: #ffebee; color: #d32f2f; padding: 8px; border-radius: 5px; font-size: 11px; font-weight: bold; text-align: center; margin-bottom: 15px; }
-        .price-card { border: 4px solid var(--orange); border-radius: 12px; margin-bottom: 15px; position: relative; overflow: hidden; }
-        .price-header { background: var(--orange); color: white; font-size: 10px; font-weight: bold; padding: 4px; text-align: center; }
+        .price-card { border: 4px solid var(--euro-blue); border-radius: 12px; margin-bottom: 15px; position: relative; overflow: hidden; }
+        .price-header { background: var(--euro-blue); color: white; font-size: 10px; font-weight: bold; padding: 4px; text-align: center; }
         .price-content { padding: 15px; display: flex; justify-content: space-between; align-items: center; }
         .price-info { text-align: left; }
         .price-info b { font-size: 13px; display: block; }
@@ -65,11 +67,11 @@
 
         /* Botões 3D */
         .btn-3d { display: block; width: 100%; padding: 16px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; color: white; transition: 0.1s; margin-bottom: 20px; }
-        .btn-green { background: #00a884; box-shadow: 0 5px 0 #007a60; }
-        .btn-blue { background: #007bff; box-shadow: 0 5px 0 #0056b3; }
+        .btn-green { background: var(--euro-green); box-shadow: 0 5px 0 #006400; }
+        .btn-blue { background: var(--euro-blue); box-shadow: 0 5px 0 #001f4d; }
         .btn-3d:active { transform: translateY(3px); box-shadow: 0 2px 0 transparent; }
 
-        /* FAQ - MODIFICADO */
+        /* FAQ */
         .faq-section { text-align: left; margin-top: 40px; }
         .faq-item { border-bottom: 1px solid #eee; cursor: pointer; }
         .faq-question { display: flex; justify-content: space-between; align-items: center; font-size: 12px; font-weight: bold; padding: 15px 0; }
@@ -85,130 +87,142 @@
         .faq-item.active .faq-icon { transform: rotate(180deg); }
         
         footer { font-size: 9px; color: #999; text-align: center; margin-top: 40px; padding-bottom: 20px; }
+        
+        .euro-flag { display: inline-block; margin-left: 5px; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <div class="profile-header">
-        <div class="avatar"> <img src="image_20439a.jpg" style="border-radius: 50%; margin: 0;"> </div>
-        <div class="profile-name">Cabeça | Dropshipping <i class="fas fa-check-circle verified"></i></div>
-        <div class="handle">@cabeca.drop</div>
-    </div>
+<div class="profile-header">
+    <img src="imagens/imagem cabeça.jpeg" alt="Cabeça" class="avatar">
+    <div class="profile-name">Cabeça | Dropshipping <i class="fas fa-check-circle verified"></i></div>
+    <div class="handle">@cabeca.drop</div>
+</div>
 
     <div class="headline-box">
-        <h1>Mensal, esse será o seu plano personalizado para começar no ECOM START e <span class="highlight-green">lucrar R$738 a R$1.138 nos próximos 7 dias!</span></h1>
-        <p class="sub-text">Você está a um passo de entrar no mercado que mais cresce no Brasil... eu vou te entregar uma loja online completa.</p>
+        <h1>Mensal, esse será seu plano personalizado para começar no <span class="highlight-green">Método Europa</span> e <span class="highlight-green">lucrar €800 a €1.500 nos próximos 7 dias!</span> <span class="euro-flag">🇪🇺</span></h1>
+        <p class="sub-text">Você está a um passo de entrar no mercado europeu que paga 3x mais... eu vou te entregar uma loja online otimizada para vendas internacionais.</p>
     </div>
 
     <div class="stats-grid">
-        <div class="stat-item">Qualidade de vida (Baixa/Média) <div class="progress-bg"><div class="progress-fill fill-orange" data-width="25%"></div></div></div>
-        <div class="stat-item">Qualidade de vida (Alta) <div class="progress-bg"><div class="progress-fill fill-green" data-width="90%"></div></div></div>
-        <div class="stat-item">Tempo livre (Pouco) <div class="progress-bg"><div class="progress-fill fill-orange" data-width="9%"></div></div></div>
-        <div class="stat-item">Tempo livre (Alto) <div class="progress-bg"><div class="progress-fill fill-green" data-width="93%"></div></div></div>
-        <div class="stat-item">Salário (Baixo) <div class="progress-bg"><div class="progress-fill fill-orange" data-width="10%"></div></div></div>
-        <div class="stat-item">Salário (Ótimo) <div class="progress-bg"><div class="progress-fill fill-green" data-width="90%"></div></div></div>
+        <div class="stat-item">Trabalhar no Brasil (Renda em R$) <div class="progress-bg"><div class="progress-fill fill-orange" data-width="25%"></div></div></div>
+        <div class="stat-item">Vender para Europa (Renda em €) <div class="progress-bg"><div class="progress-fill fill-green" data-width="90%"></div></div></div>
+        <div class="stat-item">Mercado Brasileiro (Concorrência) <div class="progress-bg"><div class="progress-fill fill-orange" data-width="85%"></div></div></div>
+        <div class="stat-item">Mercado Europeu (Oportunidade) <div class="progress-bg"><div class="progress-fill fill-green" data-width="15%"></div></div></div>
+        <div class="stat-item">Salário CLT (Limite) <div class="progress-bg"><div class="progress-fill fill-orange" data-width="10%"></div></div></div>
+        <div class="stat-item">Renda em Euros (Potencial) <div class="progress-bg"><div class="progress-fill fill-green" data-width="90%"></div></div></div>
     </div>
 
     <div class="info-card">
-        <h3>O plano é personalizado para mim?</h3>
-        <p>Sim! Ele é montado para atender você e suas necessidades!</p>
+        <h3>O plano é personalizado para vendas na Europa?</h3>
+        <p>Sim! Ele é montado especificamente para o mercado europeu, considerando países, fornecedores e estratégias internacionais!</p>
     </div>
 
     <h2 style="font-size: 14px; text-align: center; margin-bottom: 15px;">Confira tudo que você vai receber ao entrar hoje:</h2>
 
     <div class="info-card">
-        <div class="check-title"> <i class="fas fa-check-square" style="color: var(--green);"></i> Loja Profissional Pronta para Vender</div>
-        <p>Uma loja completa, criada pelo meu time, com estrutura validada, design profissional e 20 produtos campeões já cadastrados.</p>
+        <div class="check-title"> <i class="fas fa-check-square" style="color: var(--euro-green);"></i> Loja Europeia Pronta para Vender</div>
+        <p>Uma loja otimizada para vendas internacionais, criada pelo meu time, com design profissional e produtos validados em 12 países europeus.</p>
         <img src="image_2b37e3.png" alt="Exemplo de Loja">
-        <p class="sub-text">Exemplo de Loja no nicho de Moda Masculina</p>
+        <p class="sub-text">Exemplo de Loja otimizada para consumidores europeus</p>
     </div>
 
     <div class="info-card">
-        <div class="check-title"> <i class="fas fa-graduation-cap"></i> Treinamento Ecom Start (Mais de 30 Aulas)</div>
-        <p>Treinamento Passo a Passo do Zero Até os R$10 Mil.</p>
+        <div class="check-title"> <i class="fas fa-graduation-cap"></i> Treinamento Método Europa (30+ Aulas)</div>
+        <p>Treinamento Passo a Passo do Zero Até os €5.000/mês.</p>
         <img src="image_2b381b.png" alt="Área de Membros">
     </div>
 
     <div class="info-card">
-        <div class="check-title"> <i class="fas fa-shield-alt"></i> Garantia Incondicional de 60 Dias + PIX de R$200</div>
-        <p style="text-align: left; font-size: 11px;">Se você não faturar pelo menos R$10.000 nos próximos 60 dias, eu devolvo 100% do seu dinheiro e ainda te faço um PIX extra de R$200.</p>
+        <div class="check-title"> <i class="fas fa-shield-alt"></i> Garantia Europa de 60 Dias + PIX de R$200</div>
+        <p style="text-align: left; font-size: 11px;">Se você não faturar pelo menos €2.000 nos próximos 60 dias vendendo para a Europa, eu devolvo 100% do seu dinheiro e ainda te faço um PIX extra de R$200.</p>
     </div>
 
     <div class="comparison-box box-red">
-        <b>Como 99% do mercado trabalha:</b>
+        <b>Como 99% dos brasileiros trabalham:</b>
         <ul>
-            <li><i class="fas fa-times"></i> Criam lojas genéricas, sem credibilidade.</li>
-            <li><i class="fas fa-times"></i> Investem rios de dinheiro em tráfego pago.</li>
+            <li><i class="fas fa-times"></i> Vendem apenas para mercado brasileiro saturado.</li>
+            <li><i class="fas fa-times"></i> Competem por preços baixos e margens mínimas.</li>
         </ul>
     </div>
 
     <div class="comparison-box box-green-light">
-        <b>Como o "1%" que vai dominar o mercado trabalha:</b>
+        <b>Como o "1%" que vende para Europa trabalha:</b>
         <ul>
-            <li><i class="fas fa-check"></i> Constroem lojas profissionais e nichadas.</li>
-            <li><i class="fas fa-check"></i> Vendem também de forma orgânica.</li>
+            <li><i class="fas fa-check"></i> Acessam mercado europeu com maior poder de compra.</li>
+            <li><i class="fas fa-check"></i> Recebem em euros, moeda 5x mais valorizada.</li>
         </ul>
     </div>
 
-    <div class="vagas-alert">Apenas 9 vagas disponíveis por apenas R$37</div>
+    <div class="vagas-alert">Apenas 9 vagas disponíveis para brasileiros por apenas R$37</div>
 
     <div class="price-card">
         <div class="price-header">92% de Desconto no Cartão</div>
         <div class="price-content">
-            <div class="price-info"><b>Plano Personalizado Ecom Start Mensal</b></div>
+            <div class="price-info"><b>Plano Personalizado Método Europa Mensal</b></div>
             <div class="price-tag">De <strike>R$497,00</strike> por <big>R$ 37,00</big> no cartão</div>
         </div>
     </div>
     <button class="btn-3d btn-green">Economize + R$10 no cartão</button>
 
-    <div class="price-card" style="border-color: var(--blue);">
-        <div class="price-header" style="background: var(--blue);">90% de Desconto no Pix</div>
+    <div class="price-card" style="border-color: var(--euro-blue);">
+        <div class="price-header" style="background: var(--euro-blue);">90% de Desconto no Pix</div>
         <div class="price-content">
-            <div class="price-info"><b>Plano Personalizado Ecom Start Mensal</b></div>
+            <div class="price-info"><b>Plano Personalizado Método Europa Mensal</b></div>
             <div class="price-tag">De <strike>R$497,00</strike> por <big>R$ 47,00</big> no pix</div>
         </div>
     </div>
     <button class="btn-3d btn-blue">Garantir meu plano no pix</button>
 
-    <!-- FAQ MODIFICADO -->
+    <!-- FAQ -->
     <div class="faq-section">
         <h3 style="text-align: center; margin-bottom: 20px;">Perguntas Frequentes</h3>
         
         <div class="faq-item">
             <div class="faq-question">
-                Sou iniciante o treinamento é pra mim também?
+                Sou iniciante, o treinamento para Europa é pra mim também?
                 <i class="fas fa-chevron-down faq-icon"></i>
             </div>
             <div class="faq-answer">
-                Sim! O treinamento foi desenvolvido para iniciantes. Começamos do zero absoluto, ensinando passo a passo cada etapa. Não é necessário ter conhecimento prévio em e-commerce ou tecnologia.
+                Sim! O Método Europa foi desenvolvido para brasileiros iniciantes. Começamos do zero absoluto, ensinando como vender para europeus sem precisar falar outras línguas. Tudo em português, recebendo em euros.
             </div>
         </div>
         
         <div class="faq-item">
             <div class="faq-question">
-                Tenho pouco dinheiro para investir, serve pra mim?
+                Preciso saber inglês ou outras línguas para vender na Europa?
                 <i class="fas fa-chevron-down faq-icon"></i>
             </div>
             <div class="faq-answer">
-                Sim! O plano foi criado para quem tem orçamento limitado. Com apenas R$37 mensais, você terá acesso a tudo que precisa para começar. Não é necessário investir em estoque ou tráfego pago inicialmente.
+                Não! Nosso método foi criado especificamente para brasileiros. Você vende em português, nosso sistema faz toda a tradução automaticamente. O atendimento ao cliente também é simplificado.
             </div>
         </div>
         
         <div class="faq-item">
             <div class="faq-question">
-                Por quanto tempo vou ter acesso ao Ecom Start?
+                Por quanto tempo vou ter acesso ao Método Europa?
                 <i class="fas fa-chevron-down faq-icon"></i>
             </div>
             <div class="faq-answer">
-                Você terá acesso vitalício ao treinamento e atualizações. O plano mensal garante acesso contínuo enquanto a assinatura estiver ativa. Além disso, terá suporte do nosso time durante todo o processo.
+                Você terá acesso vitalício ao treinamento e atualizações. O plano mensal garante acesso contínuo enquanto a assinatura estiver ativa. Além disso, terá suporte especializado para vendas internacionais.
+            </div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">
+                Posso vender para a Europa morando no Brasil?
+                <i class="fas fa-chevron-down faq-icon"></i>
+            </div>
+            <div class="faq-answer">
+                Sim! Essa é a grande vantagem. Você opera 100% online do Brasil. Os fornecedores europeus enviam direto para os clientes, você não precisa ter estoque nem sair do país. Recebe em euros na sua conta brasileira.
             </div>
         </div>
     </div>
 
     <footer>
         Todos os direitos reservados.<br>
-        <b>ECOM CLUB LTDA - CNPJ: 53.728.836/0001-73</b>
+        <b>ECOM EUROPA LTDA - CNPJ: 53.728.836/0001-73</b>
     </footer>
 </div>
 

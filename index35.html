@@ -21,7 +21,6 @@
             padding: 20px 15px;
         }
 
-        /* Barra de Progresso Superior */
         .progress-container {
             width: 100%;
             height: 6px;
@@ -46,7 +45,6 @@
             margin-top: 20px;
         }
 
-        /* Header com Imagem Tag IMG */
         .profile-section {
             display: flex;
             align-items: center;
@@ -86,7 +84,6 @@
             margin-top: 2px;
         }
 
-        /* Títulos */
         h1 {
             font-size: 22px;
             font-weight: 700;
@@ -100,7 +97,6 @@
             margin-bottom: 30px;
         }
 
-        /* Input de Texto - CORRIGIDO SEM ZOOM */
         .input-group {
             width: 100%;
             margin-bottom: 30px;
@@ -111,7 +107,7 @@
             padding: 18px;
             border: 1.5px solid #e5e5e5;
             border-radius: 16px;
-            font-size: 16px; /* Tamanho mínimo para evitar zoom */
+            font-size: 16px;
             outline: none;
             box-sizing: border-box;
             transition: all 0.2s ease;
@@ -119,13 +115,8 @@
             background-color: #fff;
             color: #333;
             font-weight: 500;
-        }
-
-        /* CORREÇÃO: Impede zoom automático no iOS */
-        input[type="text"] {
             -webkit-text-size-adjust: 100%;
             text-size-adjust: 100%;
-            font-size: 16px; /* 16px ou mais impede zoom automático no iOS */
         }
 
         input[type="text"]:focus {
@@ -140,7 +131,6 @@
             font-size: 15px;
         }
 
-        /* Botão 3D */
         .btn-submit {
             width: 100%;
             background-color: #ffb347;
@@ -161,7 +151,6 @@
             transform: translateY(4px);
         }
 
-        /* Estado DESABILITADO do botão */
         .btn-submit.disabled {
             opacity: 0.6;
             pointer-events: none;
@@ -176,7 +165,6 @@
             display: block;
         }
 
-        /* Responsivo */
         @media (max-width: 480px) {
             h1 {
                 font-size: 20px;
@@ -184,15 +172,6 @@
             
             input[type="text"] {
                 padding: 16px;
-            }
-        }
-
-        /* Fallback para garantir que não dê zoom */
-        @media screen and (-webkit-min-device-pixel-ratio: 0) { 
-            select:focus,
-            textarea:focus,
-            input:focus {
-                font-size: 16px !important;
             }
         }
     </style>
@@ -204,12 +183,10 @@
     </div>
 
     <div class="content">
-        <!-- Perfil -->
         <div class="profile-section">
             <img src="imagens/imagem cabeça.jpeg" 
                  alt="Cabeça do Drop" 
-                 class="profile-pic"
-                 onerror="this.src='https://ui-avatars.com/api/?name=Cabe%C3%A7a+Drop&background=FFB347&color=fff&size=100'">
+                 class="profile-pic">
             <div class="profile-info">
                 <div class="profile-name">
                     Cabeça | Dropshipping 
@@ -219,102 +196,92 @@
             </div>
         </div>
 
-        <!-- Título e Subtítulo -->
         <h1>Qual seu nome?</h1>
         <div class="sub-label">Por favor, digite seu nome completo</div>
 
-        <!-- Formulário CORRIGIDO -->
         <form id="nameForm" action="index36.html">
             <div class="input-group">
                 <input type="text" 
                        id="nameInput" 
+                       name="nome"
                        placeholder="Digite seu nome..." 
                        autocomplete="off"
                        spellcheck="false"
                        required>
             </div>
 
-            <button type="submit" class="btn-submit disabled" id="submitBtn">Continuar</button>
+            <button type="submit" class="btn-submit disabled" id="submitBtn" disabled>
+                Continuar
+            </button>
         </form>
     </div>
 
-    <script>
-        // CORREÇÃO: Validação do campo + Prevenir zoom
-        document.addEventListener('DOMContentLoaded', function() {
-            const nameInput = document.getElementById('nameInput');
-            const submitBtn = document.getElementById('submitBtn');
-            const form = document.getElementById('nameForm');
+<script>
+document.addEventListener('DOMContentLoaded', function() {
 
-            // Função para validar o input
-            function validateInput() {
-                const value = nameInput.value.trim();
-                
-                if (value.length >= 2) {
-                    // Habilita o botão
-                    submitBtn.classList.remove('disabled');
-                    submitBtn.style.pointerEvents = 'auto';
-                    submitBtn.style.cursor = 'pointer';
-                    submitBtn.disabled = false;
-                    return true;
-                } else {
-                    // Desabilita o botão
-                    submitBtn.classList.add('disabled');
-                    submitBtn.style.pointerEvents = 'none';
-                    submitBtn.style.cursor = 'not-allowed';
-                    submitBtn.disabled = true;
-                    return false;
-                }
+    const nameInput = document.getElementById('nameInput');
+    const submitBtn = document.getElementById('submitBtn');
+    const form = document.getElementById('nameForm');
+
+    function normalizeName(value) {
+        return value.replace(/\s+/g, ' ').trim();
+    }
+
+    function validateInput() {
+        const value = normalizeName(nameInput.value);
+
+        if (value.length >= 2) {
+            submitBtn.classList.remove('disabled');
+            submitBtn.disabled = false;
+            nameInput.style.borderColor = '#28a745';
+            return true;
+        } else {
+            submitBtn.classList.add('disabled');
+            submitBtn.disabled = true;
+
+            if (value.length > 0) {
+                nameInput.style.borderColor = '#ff4444';
+            } else {
+                nameInput.style.borderColor = '#e5e5e5';
             }
 
-            // Evento de digitação
-            nameInput.addEventListener('input', validateInput);
-            
-            // Evento de blur (quando sai do campo) - também valida
-            nameInput.addEventListener('blur', validateInput);
-
-            // Prevenir submit se inválido
-            form.addEventListener('submit', function(e) {
-                if (!validateInput()) {
-                    e.preventDefault();
-                    // Feedback visual
-                    nameInput.style.borderColor = '#ff4444';
-                    nameInput.style.backgroundColor = '#fff8f8';
-                    
-                    setTimeout(() => {
-                        nameInput.style.borderColor = '#e5e5e5';
-                        nameInput.style.backgroundColor = '#fff';
-                    }, 1000);
-                    
-                    return false;
-                }
-                // Se válido, redireciona para index36.html
-                return true;
-            });
-
-            // CORREÇÃO: Forçar tamanho da fonte para 16px no foco
-            nameInput.addEventListener('focus', function() {
-                this.style.fontSize = '16px';
-            });
-
-            // Inicializar validação (botão começa desabilitado)
-            validateInput();
-        });
-
-        // CORREÇÃO EXTRA: Prevenir zoom em selects e inputs
-        if (navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i)) {
-            document.addEventListener('focusin', function(e) {
-                if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT') {
-                    e.target.style.fontSize = '16px';
-                }
-            });
-            
-            document.addEventListener('focusout', function(e) {
-                if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT') {
-                    e.target.style.fontSize = '16px';
-                }
-            });
+            return false;
         }
-    </script>
+    }
+
+    nameInput.addEventListener('input', validateInput);
+    nameInput.addEventListener('blur', validateInput);
+
+    form.addEventListener('submit', function(e) {
+
+        if (!validateInput()) {
+            e.preventDefault();
+
+            nameInput.style.borderColor = '#ff4444';
+
+            setTimeout(() => {
+                nameInput.style.borderColor = '#e5e5e5';
+            }, 1000);
+
+            return;
+        }
+
+        submitBtn.disabled = true;
+        submitBtn.innerText = "Salvando...";
+
+        const nomeNormalizado = normalizeName(nameInput.value);
+
+        // 🔥 SALVA NO FUNIL
+        localStorage.setItem("nome", nomeNormalizado);
+
+        // deixa seguir para próxima página normalmente
+    });
+
+    validateInput();
+
+});
+</script>
+
 
 </body>
 </html>

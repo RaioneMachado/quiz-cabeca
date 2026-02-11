@@ -21,7 +21,6 @@
             padding: 20px 15px;
         }
 
-        /* Barra de Progresso Superior */
         .progress-container {
             width: 100%;
             height: 6px;
@@ -46,7 +45,6 @@
             margin-top: 30px;
         }
 
-        /* Header com Imagem Tag IMG */
         .profile-section {
             display: flex;
             flex-direction: column;
@@ -83,7 +81,6 @@
             margin-top: 3px;
         }
 
-        /* Títulos */
         h1 {
             font-size: 22px;
             font-weight: 700;
@@ -97,7 +94,6 @@
             margin-bottom: 30px;
         }
 
-        /* Input de Telefone - CORRIGIDO SEM ZOOM */
         .input-group {
             width: 100%;
             margin-bottom: 30px;
@@ -108,7 +104,7 @@
             padding: 18px;
             border: 1.5px solid #e5e5e5;
             border-radius: 16px;
-            font-size: 16px; /* Tamanho mínimo para evitar zoom */
+            font-size: 16px;
             outline: none;
             box-sizing: border-box;
             transition: all 0.2s ease;
@@ -117,13 +113,8 @@
             color: #333;
             font-weight: 500;
             letter-spacing: 0.5px;
-        }
-
-        /* CORREÇÃO: Impede zoom automático no iOS */
-        input[type="tel"] {
             -webkit-text-size-adjust: 100%;
             text-size-adjust: 100%;
-            font-size: 16px; /* 16px ou mais impede zoom automático no iOS */
         }
 
         input[type="tel"]:focus {
@@ -138,7 +129,6 @@
             font-size: 15px;
         }
 
-        /* Botão 3D COM VALIDAÇÃO */
         .btn-submit {
             width: 100%;
             background-color: #ffb347;
@@ -159,7 +149,6 @@
             transform: translateY(4px);
         }
 
-        /* Estado DESABILITADO do botão */
         .btn-submit.disabled {
             opacity: 0.6;
             pointer-events: none;
@@ -168,19 +157,10 @@
             box-shadow: 0 6px 0 #999999;
         }
 
-        /* Dica de formato */
         .format-hint {
             font-size: 12px;
             color: #999;
             margin-top: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
-        }
-
-        .format-hint i {
-            color: #ffb347;
         }
 
         a { 
@@ -189,7 +169,6 @@
             display: block;
         }
 
-        /* Responsivo */
         @media (max-width: 480px) {
             h1 {
                 font-size: 20px;
@@ -197,15 +176,6 @@
             
             input[type="tel"] {
                 padding: 16px;
-            }
-        }
-
-        /* Fallback para garantir que não dê zoom */
-        @media screen and (-webkit-min-device-pixel-ratio: 0) { 
-            select:focus,
-            textarea:focus,
-            input:focus {
-                font-size: 16px !important;
             }
         }
     </style>
@@ -217,12 +187,11 @@
     </div>
 
     <div class="content">
-        <!-- Perfil -->
+
         <div class="profile-section">
             <img src="imagens/imagem cabeça.jpeg" 
                  alt="Cabeça do Drop" 
-                 class="profile-pic"
-                 onerror="this.src='https://ui-avatars.com/api/?name=Cabe%C3%A7a+Drop&background=FFB347&color=fff&size=100'">
+                 class="profile-pic">
             <div class="profile-name">
                 Cabeça | Dropshipping 
                 <span class="verified">✔</span>
@@ -230,20 +199,18 @@
             <div class="profile-handle">@cabeca.drop</div>
         </div>
 
-        <!-- Título e Subtítulo -->
         <h1>Qual é o seu número de telefone?</h1>
         <div class="sub-label">Por favor, digite seu número com DDD</div>
 
-        <!-- Dica de formato -->
         <div class="format-hint">
-            <span>📱 Ex: (11) 99999-9999</span>
+            📱 Ex: (11) 99999-9999
         </div>
 
-        <!-- Formulário CORRIGIDO -->
         <form id="phoneForm" action="index37.html">
             <div class="input-group">
                 <input type="tel" 
                        id="phone" 
+                       name="telefone"
                        placeholder="Digite seu número..." 
                        autocomplete="off"
                        spellcheck="false"
@@ -251,120 +218,90 @@
                        required>
             </div>
 
-            <button type="submit" class="btn-submit disabled" id="submitBtn">Continuar</button>
+            <button type="submit" class="btn-submit disabled" id="submitBtn" disabled>
+                Continuar
+            </button>
         </form>
     </div>
 
-    <script>
-        // Formatação de telefone + validação
-        document.addEventListener('DOMContentLoaded', function() {
-            const phoneInput = document.getElementById('phone');
-            const submitBtn = document.getElementById('submitBtn');
-            const form = document.getElementById('phoneForm');
+<script>
+document.addEventListener('DOMContentLoaded', function() {
 
-            // Função para formatar o telefone
-            function formatPhone(value) {
-                if (!value) return value;
-                
-                // Remove tudo que não é dígito
-                const phoneNumber = value.replace(/\D/g, '');
-                
-                // Limita a 11 dígitos (DDD + 9 dígitos)
-                const phoneLimited = phoneNumber.slice(0, 11);
-                
-                // Formata conforme a quantidade de dígitos
-                if (phoneLimited.length <= 2) {
-                    return phoneLimited;
-                } else if (phoneLimited.length <= 7) {
-                    return `(${phoneLimited.slice(0,2)}) ${phoneLimited.slice(2)}`;
-                } else {
-                    return `(${phoneLimited.slice(0,2)}) ${phoneLimited.slice(2,7)}-${phoneLimited.slice(7,11)}`;
-                }
-            }
+    const phoneInput = document.getElementById('phone');
+    const submitBtn = document.getElementById('submitBtn');
+    const form = document.getElementById('phoneForm');
 
-            // Função para validar o telefone
-            function validatePhone(phone) {
-                // Remove tudo que não é dígito
-                const digits = phone.replace(/\D/g, '');
-                
-                // Verifica se tem 10 ou 11 dígitos (com ou sem 9)
-                return digits.length === 10 || digits.length === 11;
-            }
+    function formatPhone(value) {
+        const digits = value.replace(/\D/g, '').slice(0, 11);
 
-            // Evento de input para formatar e validar
-            phoneInput.addEventListener('input', function(e) {
-                // Formata o valor
-                const formatted = formatPhone(e.target.value);
-                e.target.value = formatted;
-                
-                // Valida o telefone
-                const isValid = validatePhone(formatted);
-                
-                if (isValid) {
-                    // Habilita o botão
-                    submitBtn.classList.remove('disabled');
-                    submitBtn.style.pointerEvents = 'auto';
-                    submitBtn.style.cursor = 'pointer';
-                    submitBtn.disabled = false;
-                } else {
-                    // Desabilita o botão
-                    submitBtn.classList.add('disabled');
-                    submitBtn.style.pointerEvents = 'none';
-                    submitBtn.style.cursor = 'not-allowed';
-                    submitBtn.disabled = true;
-                }
-            });
+        if (digits.length <= 2) {
+            return digits;
+        } 
+        if (digits.length <= 7) {
+            return `(${digits.slice(0,2)}) ${digits.slice(2)}`;
+        } 
+        return `(${digits.slice(0,2)}) ${digits.slice(2,7)}-${digits.slice(7,11)}`;
+    }
 
-            // CORREÇÃO: Forçar tamanho da fonte para 16px no foco
-            phoneInput.addEventListener('focus', function() {
-                this.style.fontSize = '16px';
-            });
+    function validatePhone(phone) {
+        const digits = phone.replace(/\D/g, '');
+        return digits.length === 10 || digits.length === 11;
+    }
 
-            // Prevenir submit se inválido
-            form.addEventListener('submit', function(e) {
-                const isValid = validatePhone(phoneInput.value);
-                
-                if (!isValid) {
-                    e.preventDefault();
-                    
-                    // Feedback visual
-                    phoneInput.style.borderColor = '#ff4444';
-                    phoneInput.style.backgroundColor = '#fff8f8';
-                    
-                    setTimeout(() => {
-                        phoneInput.style.borderColor = '#e5e5e5';
-                        phoneInput.style.backgroundColor = '#fff';
-                    }, 1000);
-                    
-                    return false;
-                }
-                
-                // Se válido, redireciona para index37.html
-                return true;
-            });
+    function normalizePhone(phone) {
+        return phone.replace(/\D/g, '');
+    }
 
-            // Inicializar validação (botão começa desabilitado)
+    phoneInput.addEventListener('input', function(e) {
+
+        const formatted = formatPhone(e.target.value);
+        e.target.value = formatted;
+
+        if (validatePhone(formatted)) {
+            submitBtn.classList.remove('disabled');
+            submitBtn.disabled = false;
+            phoneInput.style.borderColor = '#28a745';
+        } else {
             submitBtn.classList.add('disabled');
-            submitBtn.style.pointerEvents = 'none';
-            submitBtn.style.cursor = 'not-allowed';
             submitBtn.disabled = true;
-        });
 
-        // CORREÇÃO EXTRA: Prevenir zoom em dispositivos Apple
-        if (navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i)) {
-            document.addEventListener('focusin', function(e) {
-                if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT') {
-                    e.target.style.fontSize = '16px';
-                }
-            });
-            
-            document.addEventListener('focusout', function(e) {
-                if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT') {
-                    e.target.style.fontSize = '16px';
-                }
-            });
+            if (formatted.length > 0) {
+                phoneInput.style.borderColor = '#ff4444';
+            } else {
+                phoneInput.style.borderColor = '#e5e5e5';
+            }
         }
-    </script>
+    });
+
+    form.addEventListener('submit', function(e) {
+
+        const isValid = validatePhone(phoneInput.value);
+
+        if (!isValid) {
+            e.preventDefault();
+            phoneInput.style.borderColor = '#ff4444';
+
+            setTimeout(() => {
+                phoneInput.style.borderColor = '#e5e5e5';
+            }, 1000);
+
+            return;
+        }
+
+        submitBtn.disabled = true;
+        submitBtn.innerText = "Salvando...";
+
+        const telefoneLimpo = normalizePhone(phoneInput.value);
+
+        // 🔥 SALVA NO FUNIL
+        localStorage.setItem("telefone", telefoneLimpo);
+
+        // deixa seguir para próxima página normalmente
+    });
+
+});
+</script>
+
 
 </body>
 </html>

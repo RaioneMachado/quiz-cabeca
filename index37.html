@@ -159,10 +159,6 @@
         form { 
             width: 100%; 
         }
-
-        .hidden {
-            display: none;
-        }
     </style>
 </head>
 <body>
@@ -242,10 +238,42 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    async function enviarDadosParaServidor(dados) {
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        const email = emailInput.value;
+        const isValid = validateEmail(email);
+
+        if (!isValid) {
+            emailInput.style.borderColor = '#ff4444';
+            return;
+        }
+
+        // Desabilita botão
+        submitBtn.disabled = true;
+        submitBtn.innerText = "Enviando...";
+
+        const emailNormalizado = normalizeEmail(email);
+        
+        // Salva email no localStorage
+        localStorage.setItem("email", emailNormalizado);
+
+        // Coleta todos os dados do localStorage
+        const dados = {
+            nome: localStorage.getItem("nome") || "",
+            email: emailNormalizado,
+            telefone: localStorage.getItem("telefone") || "",
+            pergunta1: localStorage.getItem("pergunta1") || "",
+            pergunta2: localStorage.getItem("pergunta2") || "",
+            pergunta3: localStorage.getItem("pergunta3") || "",
+            pergunta4: localStorage.getItem("pergunta4") || "",
+            pergunta5: localStorage.getItem("pergunta5") || ""
+        };
+
         try {
+            // Tenta enviar para o servidor COM TIMEOUT
             const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 segundos de timeout
+            const timeoutId = setTimeout(() => controller.abort(), 8000); // 8 segundos de timeout
 
             const response = await fetch('https://quiz-cabeca.onrender.com/enviar', {
                 method: 'POST',
@@ -263,77 +291,10 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             const result = await response.json();
-            
-            if (result.success) {
-                // Salva backup local do email enviado com sucesso
-                localStorage.setItem('email_enviado_sucesso', 'true');
-                return { success: true };
-            } else {
-                throw new Error(result.message || 'Erro desconhecido');
-            }
 
-        } catch (error) {
-            console.warn('⚠️ Erro ao enviar para o servidor:', error);
-            
-            // Salva dados no localStorage para tentar enviar depois
-            try {
-                const backupDados = JSON.parse(localStorage.getItem('backup_dados_lead') || '[]');
-                backupDados.push({
-                    dados: dados,
-                    timestamp: new Date().toISOString(),
-                    tentativas: 0
-                });
-                localStorage.setItem('backup_dados_lead', JSON.stringify(backupDados));
-                localStorage.setItem('dados_pendentes', 'true');
-            } catch (e) {
-                console.error('Erro ao salvar backup:', e);
-            }
-            
-            return { success: false, error: error.message };
-        }
-    }
-
-    form.addEventListener('submit', async function(e) {
-        e.preventDefault();
-
-        const email = emailInput.value;
-        const isValid = validateEmail(email);
-
-        if (!isValid) {
-            emailInput.style.borderColor = '#ff4444';
-            return;
-        }
-
-        // Desabilita botão e mostra loading
-        submitBtn.disabled = true;
-        submitBtn.innerText = "Processando...";
-
-        const emailNormalizado = normalizeEmail(email);
-        
-        // ✅ SEMPRE SALVA O EMAIL NO LOCALSTORAGE PRIMEIRO
-        localStorage.setItem("email", emailNormalizado);
-
-        // Coleta todos os dados do localStorage
-        const dados = {
-            nome: localStorage.getItem("nome") || "",
-            email: emailNormalizado,
-            telefone: localStorage.getItem("telefone") || "",
-            pergunta1: localStorage.getItem("pergunta1") || "",
-            pergunta2: localStorage.getItem("pergunta2") || "",
-            pergunta3: localStorage.getItem("pergunta3") || "",
-            pergunta4: localStorage.getItem("pergunta4") || "",
-            pergunta5: localStorage.getItem("pergunta5") || ""
-        };
-
-        // ✅ SALVA BACKUP COMPLETO NO LOCALSTORAGE
-        localStorage.setItem('backup_dados_completo', JSON.stringify(dados));
-        localStorage.setItem('lead_email', emailNormalizado);
-        localStorage.setItem('lead_timestamp', new Date().toISOString());
-
-        // Tenta enviar para o servidor (mas NÃO BLOQUEIA O REDIRECIONAMENTO)
-        enviarDadosParaServidor(dados).then(result => {
             if (result.success) {
                 console.log('✅ Dados enviados com sucesso!');
+                
                 // 🔥 Limpa o funil APENAS se enviou com sucesso
                 localStorage.removeItem('nome');
                 localStorage.removeItem('telefone');
@@ -342,45 +303,30 @@ document.addEventListener('DOMContentLoaded', function() {
                 localStorage.removeItem('pergunta3');
                 localStorage.removeItem('pergunta4');
                 localStorage.removeItem('pergunta5');
+                
+                // Redireciona com sucesso
+                window.location.href = "index38.html";
+                
             } else {
-                console.log('⚠️ Falha no envio, dados salvos localmente');
-                // Marca que tem dados pendentes
+                // Servidor retornou erro, mas avança mesmo assim
+                console.warn('⚠️ Servidor retornou erro, mas vamos avançar:', result.message);
+                window.location.href = "index38.html";
+            }
+
+        } catch (error) {
+            // ❗ QUALQUER ERRO (rede, timeout, servidor fora do ar) - AVANÇA MESMO ASSIM
+            console.warn('⚠️ Erro ao enviar para o servidor, mas vamos avançar:', error.message);
+            
+            // Salva backup para tentar depois (opcional, não bloqueia)
+            try {
+                localStorage.setItem('backup_dados_lead', JSON.stringify(dados));
                 localStorage.setItem('dados_pendentes', 'true');
-            }
-        });
-
-        // ✅ REDIRECIONA IMEDIATAMENTE SEM ESPERAR O SERVIDOR
-        // Isso garante que o lead NUNCA fique preso
-        setTimeout(() => {
+            } catch (e) {}
+            
+            // ✅ AVANÇA MESMO COM ERRO
             window.location.href = "index38.html";
-        }, 300); // Pequeno delay para dar tempo de salvar no localStorage
-
-    });
-
-    // Função para tentar reenviar dados pendentes (pode ser chamada depois)
-    window.tentarReenviarDadosPendentes = async function() {
-        const dadosPendentes = localStorage.getItem('dados_pendentes');
-        if (dadosPendentes === 'true') {
-            const backup = localStorage.getItem('backup_dados_completo');
-            if (backup) {
-                try {
-                    const dados = JSON.parse(backup);
-                    await enviarDadosParaServidor(dados);
-                    localStorage.removeItem('dados_pendentes');
-                    localStorage.removeItem('backup_dados_completo');
-                    console.log('✅ Dados pendentes enviados com sucesso!');
-                } catch (e) {
-                    console.error('❌ Falha ao reenviar dados pendentes:', e);
-                }
-            }
         }
-    };
 
-    // Tenta reenviar dados pendentes quando a página carrega (modo silencioso)
-    window.addEventListener('load', function() {
-        setTimeout(() => {
-            window.tentarReenviarDadosPendentes();
-        }, 2000);
     });
 
 });

@@ -2,8 +2,8 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plano Personalizado - Método Europa</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>ÚLTIMA CHANCE - Método Europa 🇪🇺</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
@@ -15,26 +15,107 @@
             --border-color: #e0e0e0;
             --euro-green: #228B22;
             --euro-blue: #003399;
+            --urgent-red: #dc3545;
+            --whatsapp: #25D366;
+            --btn-orange: #FF8C00;
+            --btn-orange-dark: #CC7000;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Helvetica Neue', Arial, sans-serif; }
         body { background-color: #fff; color: var(--dark-gray); line-height: 1.6; display: flex; flex-direction: column; align-items: center; }
         .container { max-width: 500px; width: 95%; padding: 20px 0; }
-        img { width: 100%; border-radius: 8px; display: block; margin: 15px 0; }
+        
+        img { 
+            width: 100%; 
+            max-width: 300px; 
+            height: auto; 
+            border-radius: 8px; 
+            display: block; 
+            margin: 10px auto; 
+            border: 1px solid #eee;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
 
-        /* Header Perfil */
         .profile-header { display: flex; flex-direction: column; align-items: center; margin-bottom: 20px; }
-        .avatar { width: 50px; height: 50px; border-radius: 50%; background: #eee; margin-bottom: 5px; }
+        .avatar { width: 50px; height: 50px; border-radius: 50%; background: #eee; margin-bottom: 5px; object-fit: cover; max-width: 50px; }
         .profile-name { font-weight: bold; font-size: 14px; display: flex; align-items: center; gap: 4px; }
         .verified { color: #1d9bf0; font-size: 14px; }
 
-        /* Headlines */
+        .urgent-badge {
+            background: var(--urgent-red);
+            color: white;
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 800;
+            font-size: 14px;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.9; background: #b71c1c; }
+            100% { opacity: 1; }
+        }
+
+        .countdown-box {
+            background: linear-gradient(135deg, #000, #1a1a1a);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .timer {
+            font-size: 24px;
+            font-weight: 900;
+            color: #ffd700;
+            letter-spacing: 5px;
+        }
+
+        .social-proof {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: #e8f5e9;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .proof-images {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .proof-card {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 15px;
+            box-shadow: 0 5px 15px rgba(0,153,51,0.1);
+        }
+        
+        .proof-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 12px;
+        }
+
         .headline-box { text-align: center; margin-bottom: 30px; }
-        .headline-box h1 { font-size: 15px; font-weight: 800; }
+        .headline-box h1 { font-size: 16px; font-weight: 800; line-height: 1.4; }
         .highlight-green { color: var(--euro-green); text-decoration: underline; }
         .sub-text { font-size: 11px; color: #666; margin-top: 10px; }
 
-        /* Gráficos Reativos */
         .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 30px; }
         .stat-item { font-size: 11px; font-weight: bold; }
         .progress-bg { width: 100%; height: 8px; background: #eee; border-radius: 10px; margin-top: 5px; overflow: hidden; }
@@ -42,45 +123,103 @@
         .fill-orange { background: var(--orange); }
         .fill-green { background: var(--euro-green); }
 
-        /* Boxes de Conteúdo */
         .info-card { border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; margin-bottom: 20px; text-align: center; }
         .info-card h3 { font-size: 14px; margin-bottom: 10px; }
         .info-card p { font-size: 12px; color: #555; }
         .check-title { display: flex; align-items: center; justify-content: center; gap: 8px; color: #000; font-weight: 800; font-size: 14px; }
 
-        /* Seção Comparativa (99% vs 1%) */
         .comparison-box { border-radius: 12px; padding: 15px; margin-bottom: 15px; font-size: 11px; text-align: left; }
         .box-red { background-color: #ffebee; border: 1px solid #ffcdd2; color: #c62828; }
         .box-green-light { background-color: #e8f5e9; border: 1px solid #c8e6c9; color: #2e7d32; }
         .comparison-box ul { list-style: none; }
         .comparison-box li { margin-bottom: 8px; display: flex; gap: 8px; }
 
-        /* Oferta e Preços */
-        .vagas-alert { background: #ffebee; color: #d32f2f; padding: 8px; border-radius: 5px; font-size: 11px; font-weight: bold; text-align: center; margin-bottom: 15px; }
-        .price-card { border: 4px solid var(--euro-blue); border-radius: 12px; margin-bottom: 15px; position: relative; overflow: hidden; }
-        .price-header { background: var(--euro-blue); color: white; font-size: 10px; font-weight: bold; padding: 4px; text-align: center; }
+        .garantia-img {
+            width: 100%;
+            max-width: 250px;
+            margin: 15px auto;
+            display: block;
+        }
+
+        .price-card { 
+            border: 4px solid var(--euro-blue); 
+            border-radius: 12px; 
+            margin-bottom: 15px; 
+            position: relative; 
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        
+        .price-card:hover { transform: scale(1.02); }
+        
+        .price-header { 
+            background: linear-gradient(135deg, var(--euro-blue), #001f4d); 
+            color: white; 
+            font-size: 12px; 
+            font-weight: bold; 
+            padding: 6px; 
+            text-align: center; 
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
         .price-content { padding: 15px; display: flex; justify-content: space-between; align-items: center; }
         .price-info { text-align: left; }
-        .price-info b { font-size: 13px; display: block; }
-        .price-tag { text-align: right; font-size: 10px; }
-        .price-tag big { font-size: 18px; font-weight: 800; display: block; }
+        .price-info b { font-size: 14px; display: block; }
+        .price-tag { text-align: right; font-size: 11px; }
+        .price-tag big { font-size: 22px; font-weight: 900; display: block; color: var(--euro-green); }
 
-        /* Botões 3D */
-        .btn-3d { display: block; width: 100%; padding: 16px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; color: white; transition: 0.1s; margin-bottom: 20px; }
-        .btn-green { background: var(--euro-green); box-shadow: 0 5px 0 #006400; }
-        .btn-blue { background: var(--euro-blue); box-shadow: 0 5px 0 #001f4d; }
-        .btn-3d:active { transform: translateY(3px); box-shadow: 0 2px 0 transparent; }
+        .btn-3d { 
+            display: block; 
+            width: 100%; 
+            padding: 18px; 
+            border: none; 
+            border-radius: 8px; 
+            font-weight: 900; 
+            cursor: pointer; 
+            color: white; 
+            transition: 0.1s; 
+            margin-bottom: 20px; 
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* BOTÃO LARANJA - ÚNICA ALTERAÇÃO */
+        .btn-orange { 
+            background: linear-gradient(135deg, var(--btn-orange), var(--btn-orange-dark)); 
+            box-shadow: 0 6px 0 #8B4500; 
+        }
+        
+        .btn-3d:active { 
+            transform: translateY(6px); 
+            box-shadow: 0 2px 0 transparent; 
+        }
+        
+        .btn-3d::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn-3d:hover::before { left: 100%; }
 
-        /* FAQ */
         .faq-section { text-align: left; margin-top: 40px; }
         .faq-item { border-bottom: 1px solid #eee; cursor: pointer; }
-        .faq-question { display: flex; justify-content: space-between; align-items: center; font-size: 12px; font-weight: bold; padding: 15px 0; }
+        .faq-question { display: flex; justify-content: space-between; align-items: center; font-size: 13px; font-weight: bold; padding: 15px 0; }
         .faq-answer { 
-            font-size: 11px; 
+            font-size: 12px; 
             color: #555; 
             padding: 0 0 15px 0;
             display: none;
-            line-height: 1.5;
+            line-height: 1.6;
         }
         .faq-answer.active { display: block; }
         .faq-icon { transition: transform 0.3s ease; }
@@ -89,145 +228,223 @@
         footer { font-size: 9px; color: #999; text-align: center; margin-top: 40px; padding-bottom: 20px; }
         
         .euro-flag { display: inline-block; margin-left: 5px; }
+        
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--whatsapp);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 5px 15px rgba(37,211,102,0.3);
+            animation: pulse-whatsapp 2s infinite;
+            z-index: 1000;
+        }
+        
+        @keyframes pulse-whatsapp {
+            0% { transform: scale(1); }
+            70% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .acesso-vitalicio {
+            background: linear-gradient(135deg, #4CAF50, #2E7D32);
+            color: white;
+            padding: 12px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: bold;
+            text-align: center;
+            margin: 20px 0;
+            border: 2px solid #FFD700;
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
-<div class="profile-header">
-    <img src="imagens/imagem cabeça.jpeg" alt="Cabeça" class="avatar">
-    <div class="profile-name">Cabeça | Dropshipping <i class="fas fa-check-circle verified"></i></div>
-    <div class="handle">@cabeca.drop</div>
-</div>
+    <div class="profile-header">
+        <img src="imagens/imagem cabeça.jpeg" alt="Cabeça" class="avatar" style="width: 50px; height: 50px;">
+        <div class="profile-name">Cabeça | Dropshipping Europa <i class="fas fa-check-circle verified"></i></div>
+        <div class="handle">@cabeca.drop</div>
+    </div>
+
+    <div class="urgent-badge">
+        <i class="fas fa-exclamation-triangle"></i> ÚLTIMA CHAMADA - VAGAS LIMITADAS! <i class="fas fa-exclamation-triangle"></i>
+    </div>
+
+    <div class="countdown-box">
+        <div style="font-size: 12px; margin-bottom: 5px;">🔥 PROMOÇÃO RELÂMPAGO - ENCERRA EM:</div>
+        <div class="timer" id="countdown">23:59:47</div>
+        <div style="font-size: 10px; margin-top: 5px;">Acesso Vitalício com 90% OFF</div>
+    </div>
+
+    <div class="social-proof">
+        <i class="fas fa-euro-sign" style="color: var(--euro-green); font-size: 24px;"></i>
+        <div style="font-weight: bold; font-size: 13px;">
+            Alunos já faturando em EURO! E EM R$
+        </div>
+    </div>
+
+    <div class="proof-images">
+        <div class="proof-card">
+            <div class="proof-header">
+                <i class="fas fa-bell" style="color: var(--euro-blue);"></i>
+                <span style="font-weight: bold;">Notificação de venda</span>
+                <span style="color: #999; margin-left: auto;"></span>
+            </div>
+            <img src="imagens/notificação (1).jpeg" alt="Notificação de venda" loading="lazy">
+        </div>
+
+        <div class="proof-card">
+            <div class="proof-header">
+                <i class="fas fa-bell" style="color: var(--euro-green);"></i>
+                <span style="font-weight: bold;">Notificação de venda</span>
+                <span style="color: #999; margin-left: auto;"></span>
+            </div>
+            <img src="imagens/notificação (2).jpeg" alt="Notificação de venda" loading="lazy">
+        </div>
+    </div>
 
     <div class="headline-box">
-        <h1>Mensal, esse será seu plano personalizado para começar no <span class="highlight-green">Método Europa</span> e <span class="highlight-green">lucrar €800 a €1.500 nos próximos 7 dias!</span> <span class="euro-flag">🇪🇺</span></h1>
-        <p class="sub-text">Você está a um passo de entrar no mercado europeu que paga 3x mais... eu vou te entregar uma loja online otimizada para vendas internacionais.</p>
+        <h1>⏰ ULTIMA CHANCE: Acesso Vitalício ao <span class="highlight-green">Método Europa</span> com 90% OFF</h1>
+        <p style="font-size: 13px; color: var(--urgent-red); font-weight: bold; margin-top: 10px;">
+            <i class="fas fa-euro-sign"></i> Brasileiros comuns estão lucrando até €1.500 em 7 dias vendendo para Europa! <i class="fas fa-euro-sign"></i>
+        </p>
     </div>
 
     <div class="stats-grid">
-        <div class="stat-item">Trabalhar no Brasil (Renda em R$) <div class="progress-bg"><div class="progress-fill fill-orange" data-width="25%"></div></div></div>
-        <div class="stat-item">Vender para Europa (Renda em €) <div class="progress-bg"><div class="progress-fill fill-green" data-width="90%"></div></div></div>
-        <div class="stat-item">Mercado Brasileiro (Concorrência) <div class="progress-bg"><div class="progress-fill fill-orange" data-width="85%"></div></div></div>
-        <div class="stat-item">Mercado Europeu (Oportunidade) <div class="progress-bg"><div class="progress-fill fill-green" data-width="15%"></div></div></div>
-        <div class="stat-item">Salário CLT (Limite) <div class="progress-bg"><div class="progress-fill fill-orange" data-width="10%"></div></div></div>
-        <div class="stat-item">Renda em Euros (Potencial) <div class="progress-bg"><div class="progress-fill fill-green" data-width="90%"></div></div></div>
+        <div class="stat-item">Trabalhar no Brasil (R$ desvalorizado) <div class="progress-bg"><div class="progress-fill fill-orange" data-width="25%"></div></div></div>
+        <div class="stat-item">Vender para Europa (€ supervalorizado) <div class="progress-bg"><div class="progress-fill fill-green" data-width="95%"></div></div></div>
+        <div class="stat-item">Concorrência Brasil (SATURADO) <div class="progress-bg"><div class="progress-fill fill-orange" data-width="95%"></div></div></div>
+        <div class="stat-item">Mercado Europeu (99% VAZIO) <div class="progress-bg"><div class="progress-fill fill-green" data-width="10%"></div></div></div>
+        <div class="stat-item">CLT: 220h/mês - R$1.412 <div class="progress-bg"><div class="progress-fill fill-orange" data-width="5%"></div></div></div>
+        <div class="stat-item">Europa: 2h/dia - €800+ <div class="progress-bg"><div class="progress-fill fill-green" data-width="95%"></div></div></div>
     </div>
 
     <div class="info-card">
-        <h3>O plano é personalizado para vendas na Europa?</h3>
-        <p>Sim! Ele é montado especificamente para o mercado europeu, considerando países, fornecedores e estratégias internacionais!</p>
+        <div class="check-title"> <i class="fas fa-check-square" style="color: var(--euro-green);"></i> Treinamento Completo Passo a Passo</div>
+        <p>Aprenda do zero absoluto como vender para o mercado europeu, sem estoque, sem falar inglês e recebendo em euros.</p>
     </div>
 
-    <h2 style="font-size: 14px; text-align: center; margin-bottom: 15px;">Confira tudo que você vai receber ao entrar hoje:</h2>
-
-    <div class="info-card">
-        <div class="check-title"> <i class="fas fa-check-square" style="color: var(--euro-green);"></i> Loja Europeia Pronta para Vender</div>
-        <p>Uma loja otimizada para vendas internacionais, criada pelo meu time, com design profissional e produtos validados em 12 países europeus.</p>
-        <img src="image_2b37e3.png" alt="Exemplo de Loja">
-        <p class="sub-text">Exemplo de Loja otimizada para consumidores europeus</p>
-    </div>
-
-    <div class="info-card">
-        <div class="check-title"> <i class="fas fa-graduation-cap"></i> Treinamento Método Europa (30+ Aulas)</div>
-        <p>Treinamento Passo a Passo do Zero Até os €5.000/mês.</p>
-        <img src="image_2b381b.png" alt="Área de Membros">
-    </div>
-
-    <div class="info-card">
-        <div class="check-title"> <i class="fas fa-shield-alt"></i> Garantia Europa de 60 Dias + PIX de R$200</div>
-        <p style="text-align: left; font-size: 11px;">Se você não faturar pelo menos €2.000 nos próximos 60 dias vendendo para a Europa, eu devolvo 100% do seu dinheiro e ainda te faço um PIX extra de R$200.</p>
-    </div>
+    <!-- IMAGEM DA GARANTIA DE 7 DIAS -->
+    <img src="imagens/garantia-7-dias.png" alt="Garantia de 7 dias" class="garantia-img" style="max-width: 280px;">
 
     <div class="comparison-box box-red">
-        <b>Como 99% dos brasileiros trabalham:</b>
+        <b>❌ O que 99% dos brasileiros fazem:</b>
         <ul>
-            <li><i class="fas fa-times"></i> Vendem apenas para mercado brasileiro saturado.</li>
-            <li><i class="fas fa-times"></i> Competem por preços baixos e margens mínimas.</li>
+            <li><i class="fas fa-times-circle"></i> Concorrem com 2 MILHÕES de lojas no Brasil</li>
+            <li><i class="fas fa-times-circle"></i> Vendem a R$30 com margem de R$5</li>
+            <li><i class="fas fa-times-circle"></i> Gastam fortunas em frete nacional</li>
         </ul>
     </div>
 
     <div class="comparison-box box-green-light">
-        <b>Como o "1%" que vende para Europa trabalha:</b>
+        <b>✅ O que o 1% que vende em EUROPA faz:</b>
         <ul>
-            <li><i class="fas fa-check"></i> Acessam mercado europeu com maior poder de compra.</li>
-            <li><i class="fas fa-check"></i> Recebem em euros, moeda 5x mais valorizada.</li>
+            <li><i class="fas fa-check-circle"></i> Mercado de 500 MILHÕES de consumidores ricos</li>
+            <li><i class="fas fa-check-circle"></i> Vendem a €30 com margem de €20</li>
+            <li><i class="fas fa-check-circle"></i> Frete GRÁTIS e fornecedor local</li>
+            <li><i class="fas fa-check-circle"></i> 1 EURO = R$6,00 no seu bolso</li>
         </ul>
     </div>
 
-    <div class="vagas-alert">Apenas 9 vagas disponíveis para brasileiros por apenas R$37</div>
 
     <div class="price-card">
-        <div class="price-header">92% de Desconto no Cartão</div>
+        <div class="price-header">🔥 OFERTA EXCLUSIVA - 90% OFF 🔥</div>
         <div class="price-content">
-            <div class="price-info"><b>Plano Personalizado Método Europa Mensal</b></div>
-            <div class="price-tag">De <strike>R$497,00</strike> por <big>R$ 37,00</big> no cartão</div>
+            <div class="price-info">
+                <b> MÉTODO CABEÇA DO DROP</b>
+                <span style="font-size: 11px;">Treinamento completo + Atualizações</span>
+            </div>
+            <div class="price-tag">
+                De <strike>R$497,00</strike> 
+                <big>R$ 47,00</big>
+            
+            </div>
         </div>
     </div>
-    <button class="btn-3d btn-green">Economize + R$10 no cartão</button>
+    
+    <!-- BOTÃO ALTERADO PARA LARANJA -->
+    <button class="btn-3d btn-orange">
+        <i class="fas fa-bolt"></i> GARANTIR ACESSO AGORA
+    </button>
 
-    <div class="price-card" style="border-color: var(--euro-blue);">
-        <div class="price-header" style="background: var(--euro-blue);">90% de Desconto no Pix</div>
-        <div class="price-content">
-            <div class="price-info"><b>Plano Personalizado Método Europa Mensal</b></div>
-            <div class="price-tag">De <strike>R$497,00</strike> por <big>R$ 47,00</big> no pix</div>
-        </div>
+    <div style="text-align: center; margin: -10px 0 20px 0; font-size: 11px;">
+        <i class="fas fa-shield-alt"></i> Compra segura | Garantia de 7 dias
     </div>
-    <button class="btn-3d btn-blue">Garantir meu plano no pix</button>
 
-    <!-- FAQ -->
+
     <div class="faq-section">
-        <h3 style="text-align: center; margin-bottom: 20px;">Perguntas Frequentes</h3>
+        <h3 style="text-align: center; margin-bottom: 20px; font-size: 18px;">❓ PERGUNTAS FREQUENTES</h3>
         
         <div class="faq-item">
             <div class="faq-question">
-                Sou iniciante, o treinamento para Europa é pra mim também?
+                ⚡ INICIANTE TOTAL: Funciona pra mim?
                 <i class="fas fa-chevron-down faq-icon"></i>
             </div>
             <div class="faq-answer">
-                Sim! O Método Europa foi desenvolvido para brasileiros iniciantes. Começamos do zero absoluto, ensinando como vender para europeus sem precisar falar outras línguas. Tudo em português, recebendo em euros.
+                <strong>Foi feito pra você!</strong> Nosso método começa do ZERO. Você não precisa de experiência, estoque ou falar inglês. Mais de 2.000 alunos começaram sem saber nada e hoje faturam em euro.
             </div>
         </div>
         
         <div class="faq-item">
             <div class="faq-question">
-                Preciso saber inglês ou outras línguas para vender na Europa?
+                🌍 Preciso viajar ou morar fora?
                 <i class="fas fa-chevron-down faq-icon"></i>
             </div>
             <div class="faq-answer">
-                Não! Nosso método foi criado especificamente para brasileiros. Você vende em português, nosso sistema faz toda a tradução automaticamente. O atendimento ao cliente também é simplificado.
+                <strong>NÃO!</strong> Você opera tudo do seu celular ou computador. Os fornecedores europeus enviam os produtos, você só divulga e lucra. Recebe em euros na sua conta brasileira.
             </div>
         </div>
         
         <div class="faq-item">
             <div class="faq-question">
-                Por quanto tempo vou ter acesso ao Método Europa?
+                💰 Quanto posso lucrar no primeiro mês?
                 <i class="fas fa-chevron-down faq-icon"></i>
             </div>
             <div class="faq-answer">
-                Você terá acesso vitalício ao treinamento e atualizações. O plano mensal garante acesso contínuo enquanto a assinatura estiver ativa. Além disso, terá suporte especializado para vendas internacionais.
+                <strong>Alunos dedicados estão faturando €800-€1500 nos primeiros 7-15 dias.</strong> O método é testado e validado. O limite é seu esforço.
             </div>
         </div>
         
         <div class="faq-item">
             <div class="faq-question">
-                Posso vender para a Europa morando no Brasil?
+                🔄 E se eu não gostar?
                 <i class="fas fa-chevron-down faq-icon"></i>
             </div>
             <div class="faq-answer">
-                Sim! Essa é a grande vantagem. Você opera 100% online do Brasil. Os fornecedores europeus enviam direto para os clientes, você não precisa ter estoque nem sair do país. Recebe em euros na sua conta brasileira.
+                <strong>Você tem 7 DIAS de garantia incondicional.</strong> Se por qualquer motivo não ficar satisfeito, devolvemos 100% do seu dinheiro. Sem burocracia.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                🎁 O acesso é mesmo vitalício?
+                <i class="fas fa-chevron-down faq-icon"></i>
+            </div>
+            <div class="faq-answer">
+                <strong>SIM!</strong> Você paga uma única vez de R$47 e tem acesso vitalício ao Método Europa, incluindo todas as atualizações futuras.
             </div>
         </div>
     </div>
 
     <footer>
-        Todos os direitos reservados.<br>
-        <b>ECOM EUROPA LTDA - CNPJ: 53.728.836/0001-73</b>
+        <div style="margin-bottom: 10px;">
+            <i class="fas fa-lock"></i> Ambiente 100% seguro | <i class="fas fa-shield-alt"></i> Garantia de 7 dias
+        </div>
+        Todos os direitos reservados - CABEÇA DO DROP<br>
+        
     </footer>
 </div>
 
 <script>
-    // Animação dos gráficos ao carregar
     window.addEventListener('DOMContentLoaded', () => {
         const fills = document.querySelectorAll('.progress-fill');
         setTimeout(() => {
@@ -236,38 +453,66 @@
             });
         }, 300);
 
-        // Inicialização do FAQ
         initFAQ();
+        startCountdown();
+        startOfferTimer();
     });
 
-    // Lógica do FAQ - Abrir/Fechar respostas
     function initFAQ() {
         const faqItems = document.querySelectorAll('.faq-item');
-        
         faqItems.forEach(item => {
             const question = item.querySelector('.faq-question');
-            const answer = item.querySelector('.faq-answer');
-            
             question.addEventListener('click', () => {
-                // Fecha todas as outras respostas
                 faqItems.forEach(otherItem => {
                     if (otherItem !== item) {
                         otherItem.classList.remove('active');
                         otherItem.querySelector('.faq-answer').classList.remove('active');
                     }
                 });
-                
-                // Alterna (abre/fecha) a resposta atual
                 item.classList.toggle('active');
-                answer.classList.toggle('active');
+                item.querySelector('.faq-answer').classList.toggle('active');
             });
         });
     }
 
-    // Redirecionamento (Simulando clique de checkout)
+    function startCountdown() {
+        let timeLeft = 86399;
+        const countdownEl = document.getElementById('countdown');
+        
+        setInterval(() => {
+            if (timeLeft > 0) {
+                timeLeft--;
+                const hours = Math.floor(timeLeft / 3600);
+                const minutes = Math.floor((timeLeft % 3600) / 60);
+                const seconds = timeLeft % 60;
+                
+                countdownEl.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            }
+        }, 1000);
+    }
+
+    function startOfferTimer() {
+        let timeLeft = 85647;
+        const timerEl = document.getElementById('offerTimer');
+        
+        setInterval(() => {
+            if (timeLeft > 0) {
+                timeLeft--;
+                const hours = Math.floor(timeLeft / 3600);
+                const minutes = Math.floor((timeLeft % 3600) / 60);
+                const seconds = timeLeft % 60;
+                
+                timerEl.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            }
+        }, 1000);
+    }
+
     document.querySelectorAll('.btn-3d').forEach(btn => {
-        btn.addEventListener('click', () => {
-            window.location.href = 'index41.html';
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            if(confirm('🚨 ÚLTIMA CHANCE! 🚨\n\nGaranta seu acesso vitalício ao Método Europa por apenas R$47?')) {
+                window.location.href = 'index41.html';
+            }
         });
     });
 </script>

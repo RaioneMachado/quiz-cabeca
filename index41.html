@@ -1,347 +1,281 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Plano Personalizado - Ecom Start</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plano Personalizado - Ecom Start</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        body {
+            background-color: #ffffff;
+            color: #000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-bottom: 50px;
+            min-height: 100vh;
+        }
 
-<style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
-}
+        .progress-container {
+            width: 100%;
+            height: 4px;
+            background-color: #f1f1f1;
+            margin-bottom: 20px;
+        }
 
-body{
-background:#fff;
-color:#000;
-display:flex;
-flex-direction:column;
-align-items:center;
-padding-bottom:50px;
-}
+        .progress-bar {
+            width: 60%;
+            height: 100%;
+            background-color: #ffa500;
+            margin: 0 auto;
+        }
 
-.progress-container{
-width:100%;
-height:4px;
-background:#f1f1f1;
-margin-bottom:30px;
-}
+        .container {
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+        }
 
-.progress-bar{
-width:60%;
-height:100%;
-background:#ffa500;
-margin:0 auto;
-}
+        .profile-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 15px;
+        }
 
-.container{
-max-width:500px;
-width:90%;
-text-align:center;
-}
+        .avatar {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background-image: url('imagens/imagem cabeça.jpeg');
+            background-size: cover;
+            background-position: center;
+            margin-bottom: 8px;
+            border: 2px solid #ffa500;
+        }
 
-.profile-header{
-display:flex;
-flex-direction:column;
-align-items:center;
-margin-bottom:20px;
-}
+        .profile-name {
+            font-weight: bold;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
 
-.avatar{
-width:50px;
-height:50px;
-border-radius:50%;
-background-image:url('imagens/imagem cabeça.jpeg');
-background-size:cover;
-background-position:center;
-margin-bottom:5px;
-}
+        .verified {
+            color: #1d9bf0;
+            font-size: 16px;
+        }
 
-.profile-name{
-font-weight:bold;
-font-size:14px;
-display:flex;
-align-items:center;
-gap:4px;
-}
+        .handle {
+            color: #666;
+            font-size: 13px;
+        }
 
-.verified{
-color:#1d9bf0;
-font-size:14px;
-}
+        .headline {
+            font-size: 15px;
+            font-weight: 800;
+            line-height: 1.4;
+            margin-bottom: 20px;
+            padding: 0 5px;
+        }
 
-.handle{
-color:#666;
-font-size:12px;
-}
+        .headline a {
+            color: #00a884;
+            text-decoration: underline;
+            cursor: default;
+        }
 
-.headline{
-font-size:14px;
-font-weight:800;
-line-height:1.4;
-margin-bottom:20px;
-}
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            border-radius: 20px;
+            overflow: hidden;
+            background: #000;
+            margin-bottom: 15px;
+            aspect-ratio: 9 / 16;
+            max-height: 70vh;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
 
-.video-wrapper{
-position:relative;
-width:100%;
-border-radius:12px;
-overflow:hidden;
-background:#000;
-margin-bottom:15px;
-aspect-ratio:16/9;
-}
+        #panda-player {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
 
-#youtube-player{
-width:100%;
-height:100%;
-}
+        .warning-text {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: #f5f5f5;
+            padding: 8px 18px;
+            border-radius: 50px;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+            border: 1px solid #e0e0e0;
+        }
 
-.video-overlay{
-position:absolute;
-top:0;
-left:0;
-width:100%;
-height:100%;
-z-index:5;
-cursor:pointer;
-}
+        .warning-text i {
+            color: #ffa500;
+        }
 
-.audio-overlay{
-position:absolute;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-background:#ffa500;
-padding:20px;
-border-radius:10px;
-color:#fff;
-text-align:center;
-cursor:pointer;
-z-index:10;
-width:70%;
-box-shadow:0 4px 15px rgba(0,0,0,.3);
-}
+        .btn-3d {
+            display: block;
+            width: 100%;
+            background: #cccccc;
+            color: #666666;
+            padding: 18px 20px;
+            border: none;
+            border-radius: 16px;
+            font-weight: bold;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            cursor: not-allowed;
+            box-shadow: 0 7px 0 #999999;
+            transition: all 0.1s ease;
+            pointer-events: none;
+            margin-top: 15px;
+        }
 
-.audio-overlay i{
-font-size:40px;
-margin-bottom:5px;
-}
+        .btn-3d.active {
+            background: #ffa500;
+            color: white;
+            box-shadow: 0 7px 0 #cc8400;
+            cursor: pointer;
+            pointer-events: auto;
+            background: linear-gradient(135deg, #ffa500, #ff8c00);
+        }
 
-.audio-overlay p{
-font-size:12px;
-font-weight:bold;
-text-transform:uppercase;
-}
+        .btn-3d.active:hover {
+            background: linear-gradient(135deg, #ffb733, #ffa500);
+            transform: translateY(-2px);
+            box-shadow: 0 9px 0 #cc8400;
+        }
 
-.warning-text{
-font-size:11px;
-color:#666;
-margin-bottom:10px;
-}
+        .btn-3d.active:active {
+            box-shadow: 0 3px 0 #cc8400;
+            transform: translateY(4px);
+        }
 
-.timer-text{
-font-size:12px;
-color:#666;
-margin-bottom:10px;
-}
+        @media (max-width: 480px) {
+            .container {
+                width: 92%;
+            }
+            
+            .video-wrapper {
+                max-height: 75vh;
+            }
+            
+            .btn-3d {
+                padding: 16px;
+                font-size: 15px;
+            }
+            
+            .profile-name {
+                font-size: 15px;
+            }
+            
+            .headline {
+                font-size: 14px;
+            }
+        }
 
-.btn-3d{
-display:block;
-width:100%;
-background:#ffa500;
-color:#fff;
-padding:15px;
-border:none;
-border-radius:8px;
-font-weight:bold;
-font-size:14px;
-cursor:not-allowed;
-box-shadow:0 5px 0 #cc8400;
-opacity:.6;
-pointer-events:none;
-transition:.2s;
-}
-
-.btn-3d.active{
-cursor:pointer;
-opacity:1;
-pointer-events:auto;
-}
-
-.btn-3d.active:active{
-transform:translateY(5px);
-box-shadow:0 0 0 #cc8400;
-}
-
-#youtube-player iframe{
-pointer-events:none;
-}
-</style>
+        @media (min-width: 768px) {
+            .container {
+                max-width: 380px;
+            }
+            
+            .video-wrapper {
+                max-height: 80vh;
+            }
+        }
+    </style>
 </head>
-
 <body>
 
-<div class="progress-container">
-<div class="progress-bar"></div>
-</div>
+    <div class="progress-container">
+        <div class="progress-bar"></div>
+    </div>
 
-<div class="container">
+    <div class="container">
+        <div class="profile-header">
+            <div class="avatar"></div>
+            <div class="profile-name">Cabeça | Dropshipping <i class="fas fa-check-circle verified"></i></div>
+            <div class="handle">@cabeca.drop</div>
+        </div>
 
-<div class="profile-header">
-<div class="avatar"></div>
-<div class="profile-name">
-Cabeça | Dropshipping 
-<i class="fas fa-check-circle verified"></i>
-</div>
-<div class="handle">@cabeca.drop</div>
-</div>
+        <h1 class="headline">
+            Assista esse vídeo final para entender como <a>Garantir o seu Plano Personalizado:</a>
+        </h1>
 
-<h1 class="headline">
-Assista esse vídeo final para entender como Garantir o seu Plano Personalizado:
-</h1>
+        <div class="video-wrapper">
+            <iframe id="panda-player" 
+                    src="https://player-vz-7b7dee23-423.tv.pandavideo.com.br/embed/?v=4618f7be-d230-4428-acd5-a759517ab8be" 
+                    frameborder="0"
+                    allowfullscreen
+                    allow="autoplay; fullscreen">
+            </iframe>
+        </div>
 
-<div class="video-wrapper">
-<div id="youtube-player"></div>
-<div class="video-overlay" id="videoOverlay"></div>
+        <button class="btn-3d" id="continue-btn">
+            🔓 Continuar para o plano
+        </button>
+    </div>
 
-<div class="audio-overlay" id="audioOverlay">
-<i class="fas fa-volume-up"></i>
-<p>Clique aqui</p>
-<p>para ativar o som</p>
-</div>
-</div>
+    <script>
+        const continueBtn = document.getElementById('continue-btn');
+        
+        // Variável para controlar o tempo
+        let timeElapsed = 0;
+        const REQUIRED_SECONDS = 60; // 60 segundos = 1 minuto
 
-<div class="warning-text">
-Só clique em continuar depois de ver todo o vídeo.
-</div>
+        // Incrementar o tempo a cada segundo
+        const timer = setInterval(function() {
+            timeElapsed++;
+            
+            // Se atingiu 60 segundos, libera o botão
+            if (timeElapsed >= REQUIRED_SECONDS) {
+                continueBtn.classList.add('active');
+                clearInterval(timer); // Para o contador
+            }
+        }, 1000);
 
-<div class="timer-text" id="timer">
-⏳ Aguarde 1:00 para continuar
-</div>
+        // Botão continuar
+        continueBtn.addEventListener('click', function() {
+            if (continueBtn.classList.contains('active')) {
+                window.location.href = 'index42.html';
+            }
+        });
 
-<button class="btn-3d" id="continueBtn">
-Continuar
-</button>
+        // Prevenir que o botão seja clicado antes do tempo
+        continueBtn.addEventListener('mousedown', (e) => {
+            if (!continueBtn.classList.contains('active')) {
+                e.preventDefault();
+            }
+        });
 
-</div>
-
-<script src="https://www.youtube.com/iframe_api"></script>
-
-<script>
-
-let player;
-let unlockTime = 60;
-let unlocked = false;
-let interval = null;
-
-const continueBtn = document.getElementById("continueBtn");
-const timer = document.getElementById("timer");
-const audioOverlay = document.getElementById("audioOverlay");
-const videoOverlay = document.getElementById("videoOverlay");
-
-document.addEventListener("contextmenu", e => e.preventDefault());
-
-function onYouTubeIframeAPIReady(){
-player = new YT.Player("youtube-player",{
-videoId:"EGr4OI1lk48",
-host:"https://www.youtube.com",
-playerVars:{
-autoplay:1,
-controls:0,
-disablekb:1,
-fs:0,
-rel:0,
-modestbranding:1,
-iv_load_policy:3,
-playsinline:1,
-mute:1,
-enablejsapi:1,
-origin:window.location.origin
-},
-events:{
-onReady:onPlayerReady,
-onStateChange:onPlayerStateChange,
-onError:onPlayerError
-}
-});
-}
-
-function onPlayerReady(event){
-event.target.playVideo();
-
-audioOverlay.addEventListener("click",function(){
-player.unMute();
-player.setVolume(100);
-audioOverlay.style.display="none";
-});
-
-videoOverlay.addEventListener("click",function(){
-let state=player.getPlayerState();
-if(state===YT.PlayerState.PLAYING){
-player.pauseVideo();
-}else{
-player.playVideo();
-}
-});
-}
-
-function onPlayerStateChange(event){
-if(event.data===YT.PlayerState.PLAYING && !interval){
-startTimer();
-}
-
-if(event.data===YT.PlayerState.ENDED && !unlocked){
-unlockButton();
-}
-}
-
-function startTimer(){
-interval=setInterval(function(){
-if(!player||unlocked)return;
-
-let current=player.getCurrentTime();
-
-if(current>=unlockTime){
-unlockButton();
-}else{
-let remain=Math.ceil(unlockTime-current);
-let min=Math.floor(remain/60);
-let sec=remain%60;
-timer.textContent="⏳ Aguarde "+min+":"+sec.toString().padStart(2,"0")+" para continuar";
-}
-},500);
-}
-
-function unlockButton(){
-unlocked=true;
-clearInterval(interval);
-continueBtn.classList.add("active");
-timer.textContent="✅ Botão liberado! Clique para continuar";
-}
-
-function onPlayerError(event){
-console.log("Erro do player:",event.data);
-timer.textContent="Erro ao carregar vídeo. Atualize a página.";
-}
-
-continueBtn.addEventListener("click",function(){
-if(unlocked){
-window.location.href="index42.html";
-}
-});
-
-document.addEventListener("visibilitychange",function(){
-if(document.hidden&&player){
-player.pauseVideo();
-}
-});
-
-</script>
+        // Fallback de segurança: libera após 65 segundos caso algo dê errado
+        setTimeout(() => {
+            if (!continueBtn.classList.contains('active')) {
+                continueBtn.classList.add('active');
+                clearInterval(timer);
+            }
+        }, 65000);
+    </script>
 
 </body>
 </html>

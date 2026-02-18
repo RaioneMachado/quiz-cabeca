@@ -195,11 +195,11 @@
         ];
 
         function updateProgress() {
-            // Lógica de velocidade variável
+            // Ajustado para completar em aproximadamente 10 segundos
             let increment = 0;
-            if (progress < 20) increment = Math.random() * 0.5; // Lento
-            else if (progress < 70) increment = Math.random() * 1.5; // Rápido
-            else increment = Math.random() * 0.3; // Lento no final
+            if (progress < 20) increment = Math.random() * 1.0; // Aumentado de 0.5 para 1.0
+            else if (progress < 70) increment = Math.random() * 3.0; // Aumentado de 1.5 para 3.0
+            else increment = Math.random() * 0.6; // Aumentado de 0.3 para 0.6
 
             progress += increment;
 

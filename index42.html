@@ -185,9 +185,11 @@
             letter-spacing: 2px;
             position: relative;
             overflow: hidden;
+            text-decoration: none;
+            text-align: center;
         }
         
-        /* BOTÃO LARANJA - ÚNICA ALTERAÇÃO */
+        /* BOTÃO LARANJA */
         .btn-orange { 
             background: linear-gradient(135deg, var(--btn-orange), var(--btn-orange-dark)); 
             box-shadow: 0 6px 0 #8B4500; 
@@ -371,11 +373,11 @@
         </div>
     </div>
     
-    <!-- BOTÃO ALTERADO PARA LARANJA -->
-    <button class="btn-3d btn-orange">
+    <!-- BOTÃO CORRIGIDO - AGORA LEVA DIRETO PARA O CHECKOUT SEM POPUP -->
+    <a href="https://lastlink.com/p/C5247D226/checkout-payment" class="btn-3d btn-orange">
         <i class="fas fa-bolt"></i> GARANTIR ACESSO AGORA
-    </button>
-
+    </a>
+    
     <div style="text-align: center; margin: -10px 0 20px 0; font-size: 11px;">
         <i class="fas fa-shield-alt"></i> Compra segura | Garantia de 7 dias
     </div>
@@ -455,7 +457,6 @@
 
         initFAQ();
         startCountdown();
-        startOfferTimer();
     });
 
     function initFAQ() {
@@ -491,31 +492,14 @@
         }, 1000);
     }
 
-    function startOfferTimer() {
-        let timeLeft = 85647;
-        const timerEl = document.getElementById('offerTimer');
-        
-        setInterval(() => {
-            if (timeLeft > 0) {
-                timeLeft--;
-                const hours = Math.floor(timeLeft / 3600);
-                const minutes = Math.floor((timeLeft % 3600) / 60);
-                const seconds = timeLeft % 60;
-                
-                timerEl.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-            }
-        }, 1000);
-    }
-
-    document.querySelectorAll('.btn-3d').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            if(confirm('🚨 ÚLTIMA CHANCE! 🚨\n\nGaranta seu acesso vitalício ao Método Europa por apenas R$47?')) {
-                window.location.href = 'index41.html';
-            }
-        });
-    });
+    // REMOVIDO O CÓDIGO QUE CAUSAVA O POPUP
+    // O botão agora é um link direto para o checkout
 </script>
+
+<!-- WHATSAPP FLOAT OPCIONAL -->
+<a href="https://wa.me/5511999999999" class="whatsapp-float" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+</a>
 
 </body>
 </html>

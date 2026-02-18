@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Analisando seu Perfil...</title>
+    <title>A Mudança com Ecom Start</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
@@ -18,210 +19,217 @@
             color: #000;
         }
 
+        /* Barra de Progresso Superior */
+        .progress-container {
+            width: 100%;
+            height: 4px;
+            background-color: #fcebd5;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
+        }
+
+        .progress-bar {
+            width: 85%; /* Progresso avançado */
+            height: 100%;
+            background-color: #ffb347;
+        }
+
         .container {
             width: 90%;
             max-width: 500px;
+            margin-top: 50px;
             text-align: center;
-            margin-top: 60px;
+            padding-bottom: 50px;
         }
 
         /* Header Perfil */
         .profile-header {
             display: flex;
-            flex-direction: column;
             align-items: center;
-            gap: 5px;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .profile-pic {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: #eee;
+        }
+
+        .profile-info { text-align: left; }
+        .profile-name { font-size: 14px; font-weight: 700; display: flex; align-items: center; gap: 4px; }
+        .profile-handle { font-size: 12px; color: #666; }
+
+        h1 {
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+
+        .sub-text {
+            font-size: 11px;
+            color: #888;
             margin-bottom: 30px;
         }
 
-        .profile-pic { width: 45px; height: 45px; border-radius: 50%; background: #eee; }
-        .profile-name { font-size: 13px; font-weight: 700; }
-        .profile-handle { font-size: 11px; color: #666; }
-
-        /* Barra de Carregamento */
-        .loading-section { margin: 40px 0; }
-        .loading-label {
-            font-size: 11px;
-            font-weight: 600;
-            color: #444;
-            margin-bottom: 10px;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .progress-bg {
-            width: 100%;
-            height: 10px;
-            background: #f0f0f0;
-            border-radius: 20px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            width: 0%;
-            height: 100%;
-            background: linear-gradient(90deg, #ffb347, #ffcc33);
-            border-radius: 20px;
-            transition: width 0.3s ease;
-        }
-
-        /* Texto de Status */
-        .status-msg {
-            font-size: 14px;
-            font-weight: 700;
-            color: #166534;
-            background: #dcfce7;
-            padding: 15px;
-            border-radius: 12px;
+        /* Área dos Gráficos */
+        .chart-section {
             margin-bottom: 40px;
-            min-height: 45px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
-        /* Depoimentos Deslizantes */
-        .testimonial-slider {
-            width: 100%;
-            overflow: hidden;
+        .chart-title {
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .chart-container {
             position: relative;
-            margin-top: 20px;
+            width: 100%;
+            height: 200px;
         }
 
-        .testimonial-track {
-            display: flex;
-            gap: 20px;
-            animation: scroll 25s linear infinite;
-            width: max-content;
+        /* Banner Verde de Destaque */
+        .highlight-banner {
+            background-color: #dcfce7;
+            color: #166534;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            margin: 25px 0;
         }
 
-        .card {
-            width: 260px;
-            background: #fff;
-            border: 1px solid #eee;
-            border-radius: 15px;
-            padding: 20px;
-            text-align: left;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+        /* Botão 3D */
+        .btn-continue {
+            width: 100%;
+            background-color: #ffb347;
+            color: white;
+            border: none;
+            padding: 18px 0;
+            font-size: 15px;
+            font-weight: bold;
+            border-radius: 12px;
+            cursor: pointer;
+            box-shadow: 0 5px 0 #e69a2e;
+            transition: all 0.1s;
         }
 
-        .stars { color: #ffb347; font-size: 12px; margin-bottom: 8px; }
-        .user-name { font-weight: 700; font-size: 13px; margin-bottom: 5px; }
-        .user-comment { font-size: 12px; color: #555; line-height: 1.5; }
-
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+        .btn-continue:active {
+            box-shadow: 0 2px 0 #e69a2e;
+            transform: translateY(3px);
         }
 
+        a { text-decoration: none; width: 100%; }
     </style>
 </head>
 <body>
 
+    <div class="progress-container">
+        <div class="progress-bar"></div>
+    </div>
 <div class="container">
     <div class="profile-header">
         <img src="imagens/imagem cabeça.jpeg" alt="Cabeça" class="profile-pic">
-        <div class="profile-name">Cabeça | Dropshipping <span style="color:#1d9bf0">✔</span></div>
-        <div class="profile-handle">@cabeca.drop</div>
+        <div class="profile-info">
+            <div class="profile-name">Cabeça | Dropshipping <span style="color:#1d9bf0">✔</span></div>
+            <div class="profile-handle">@cabeca.drop</div>
+        </div>
     </div>
-        <div class="loading-section">
-            <div class="loading-label">
-                <span>Analisando seu perfil para o mercado europeu...</span>
-                <span id="percent-text">0%</span>
-            </div>
-            <div class="progress-bg">
-                <div class="progress-fill" id="bar"></div>
+
+        <h1>Mas... depois que eles descobriram o Cabeça do Drop, começaram a vender online mesmo sem estoque e com produtos já validados</h1>
+        <div class="sub-text">Essas foram as mudanças na vida deles...</div>
+
+        <div class="chart-section">
+            <div class="chart-title">O emocional deles após descobrirem o Cabeça do Drop:</div>
+            <div class="chart-container">
+                <canvas id="chartEmotional"></canvas>
             </div>
         </div>
 
-        <div class="status-msg" id="status">
-            Iniciando análise de compatibilidade com o mercado europeu...
+        <div class="highlight-banner">
+            Além do emocional, a primeira mudança financeira já veio em 7 dias:
         </div>
 
-        <div class="testimonial-slider">
-            <div class="testimonial-track">
-                <div class="card">
-                    <div class="stars">★★★★★</div>
-                    <div class="user-name">Carlos Silva</div>
-                    <div class="user-comment">Depois que descobri o Cabeça do Drop, minha vida mudou completamente. Em 2 semanas já estava faturando €850/dia vendendo para a Alemanha!</div>
-                </div>
-                <div class="card">
-                    <div class="stars">★★★★★</div>
-                    <div class="user-name">Ana Paula</div>
-                    <div class="user-comment">Antes do Cabeça, trabalhava 10h/dia na CLT. Hoje faturo €4.200/mês vendendo para Europa trabalhando apenas 2h por dia de casa.</div>
-                </div>
-                <div class="card">
-                    <div class="stars">★★★★★</div>
-                    <div class="user-name">Pedro Costa</div>
-                    <div class="user-comment">Descobrir o Cabeça do Drop foi o divisor de águas. Fiz minha primeira venda em euros em 7 dias e hoje faturar €1.500+ por semana é rotina.</div>
-                </div>
-                <div class="card">
-                    <div class="stars">★★★★★</div>
-                    <div class="user-name">Mariana Lima</div>
-                    <div class="user-comment">Não acreditava que poderia vender para a Europa sem saber outras línguas. O Cabeça mostrou o caminho e hoje tenho renda em moeda forte.</div>
-                </div>
-                <div class="card">
-                    <div class="stars">★★★★★</div>
-                    <div class="user-name">Rafael Almeida</div>
-                    <div class="user-comment">Depois que conheci o método do Cabeça, saí do emprego de R$2.500 e hoje faturo €3.800/mês vendendo para França e Espanha do Brasil.</div>
-                </div>
-                <div class="card">
-                    <div class="stars">★★★★★</div>
-                    <div class="user-name">Carlos Silva</div>
-                    <div class="user-comment">Depois que descobri o Cabeça do Drop, minha vida mudou completamente. Em 2 semanas já estava faturando €850/dia vendendo para a Alemanha!</div>
-                </div>
-                <div class="card">
-                    <div class="stars">★★★★★</div>
-                    <div class="user-name">Ana Paula</div>
-                    <div class="user-comment">Antes do Cabeça, trabalhava 10h/dia na CLT. Hoje faturo €4.200/mês vendendo para Europa trabalhando apenas 2h por dia de casa.</div>
-                </div>
+        <div class="chart-section">
+            <div class="chart-container">
+                <canvas id="chartFinancial"></canvas>
             </div>
         </div>
+
+        <a href="index35.html">
+            <button class="btn-continue">Continuar</button>
+        </a>
     </div>
 
     <script>
-        const bar = document.getElementById('bar');
-        const percentText = document.getElementById('percent-text');
-        const statusMsg = document.getElementById('status');
-        
-        let progress = 0;
-        
-        const messages = [
-            { p: 10, m: "Analisando compatibilidade com mercado europeu..." },
-            { p: 35, m: "Validando fornecedores europeus..." },
-            { p: 60, m: "Calculando projeção de lucro em euros para 7 dias..." },
-            { p: 85, m: "Estruturando seu plano personalizado para a Europa..." },
-            { p: 100, m: "Perfil aprovado para vendas internacionais!" }
-        ];
+        // Gráfico Emocional (Linha com área)
+        const ctx1 = document.getElementById('chartEmotional').getContext('2d');
+        const gradient = ctx1.createLinearGradient(0, 0, 0, 200);
+        gradient.addColorStop(0, 'rgba(34, 197, 94, 0.6)');
+        gradient.addColorStop(1, 'rgba(239, 68, 68, 0.6)');
 
-        function updateProgress() {
-            // Ajustado para completar em aproximadamente 10 segundos
-            let increment = 0;
-            if (progress < 20) increment = Math.random() * 1.0; // Aumentado de 0.5 para 1.0
-            else if (progress < 70) increment = Math.random() * 3.0; // Aumentado de 1.5 para 3.0
-            else increment = Math.random() * 0.6; // Aumentado de 0.3 para 0.6
-
-            progress += increment;
-
-            if (progress > 100) progress = 100;
-
-            bar.style.width = progress + "%";
-            percentText.innerText = Math.floor(progress) + "%";
-
-            // Atualiza mensagens
-            const currentMsg = messages.find(msg => progress <= msg.p);
-            if (currentMsg) statusMsg.innerText = currentMsg.m;
-
-            if (progress < 100) {
-                setTimeout(updateProgress, 100);
-            } else {
-                setTimeout(() => {
-                    window.location.href = "index35.html";
-                }, 1000);
+        new Chart(ctx1, {
+            type: 'line',
+            data: {
+                labels: ['', '', ''],
+                datasets: [{
+                    data: [20, 45, 95],
+                    borderColor: '#ffb347',
+                    backgroundColor: gradient,
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 6,
+                    pointBackgroundColor: ['#ef4444', '#f59e0b', '#22c55e']
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: { 
+                    x: { display: false }, 
+                    y: { display: false, min: 0, max: 110 } 
+                }
             }
-        }
+        });
 
-        updateProgress();
+        // Gráfico Financeiro (Barras)
+        const ctx2 = document.getElementById('chartFinancial').getContext('2d');
+        new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: ['1º dia', '7 dias', '3 meses'],
+                datasets: [
+                    {
+                        label: 'Antes',
+                        data: [25, 30, 35],
+                        backgroundColor: '#6b7280',
+                        borderRadius: 5
+                    },
+                    {
+                        label: 'Depois',
+                        data: [40, 65, 100],
+                        backgroundColor: '#22c55e',
+                        borderRadius: 5
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    y: { display: false },
+                    x: { grid: { display: false }, ticks: { font: { size: 10 } } }
+                }
+            }
+        });
     </script>
 </body>
 </html>
